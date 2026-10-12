@@ -140,6 +140,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func start_session() -> void:
 	prepare()
+	%NightThemes.begin_session()
 	state = "playing"
 	if auto_fullscreen and DisplayServer.get_name() != "headless" and get_viewport() == get_window():
 		get_window().mode = Window.MODE_FULLSCREEN

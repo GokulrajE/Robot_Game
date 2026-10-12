@@ -1,5 +1,7 @@
 [gd_scene format=3]
 
+[ext_resource type="PackedScene" path="res://scenes/3d/night_themes.tscn" id="night"]
+
 [ext_resource type="Script" path="res://cognitive_hub.gd" id="logic"]
 [ext_resource type="Theme" path="res://scenes/adventure_theme.tres" id="theme"]
 [ext_resource type="PackedScene" path="res://scenes/3d/cognitive_tile.tscn" id="tile"]
@@ -43,9 +45,10 @@ projection = 1
 size = 19.5
 keep_aspect = 0
 current = true
-[node name="Floor" type="MeshInstance3D" parent="World"]
-position = Vector3(0, -0.1, 0)
-mesh = SubResource("floor")
+[node name="NightThemes" parent="World" instance=ExtResource("night")]
+unique_name_in_owner = true
+position = Vector3(0, 0, 0.8)
+scale = Vector3(0.68, 0.68, 0.68)
 [node name="Board" type="Node3D" parent="World"]
 unique_name_in_owner = true
 [node name="TargetIcon" parent="World" instance=ExtResource("tile")]

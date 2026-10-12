@@ -6,7 +6,8 @@ Created specifically for this project using Godot mesh geometry and materials:
 
 - Nova: rounded explorer robot, visor, antenna, backpack, articulated legs and shield.
 - Sentinel drone: coral body, dark visor, twin rotors and illuminated eyes.
-- Crystal: six-sided double-cone gem and an orbiting ring.
+- Golden seed: rounded glowing body, pointed husk, paired leaves and orbiting ring. The scene retains its original `crystal.tscn` filename for gameplay compatibility.
+- Night environments: Starlight Courtyard, Moonlit Robo Garden and Lunar Greenhouse; native scene geometry, charging alcoves, lanterns and soft-glow shader inspired by the approved concept previews.
 - Floating arena: tiled platform, edge lighting, lamps, planters and landing marker.
 - Continuous adventure floor: grid surface extending beyond the viewport.
 - Cognitive icons: apple, flower, fish, rocket, mushroom, butterfly, duck and tree; native mesh geometry in `scenes/3d/icons/`.
@@ -20,7 +21,7 @@ Editable source scenes: `scenes/3d/`. Reusable GLB exports: `assets/3d/`. The ex
 - Download: https://kenney.nl/media/pages/assets/nature-kit/37ac38a37b-1677698939/kenney_nature-kit.zip
 - License: Creative Commons Zero (CC0), bundled at `assets/kenney-nature/License.txt`.
 - Downloaded on 12 October 2026. Six original GLB files are bundled locally: `tree_small`, `tree_pineSmallA`, `flower_purpleA`, `flower_yellowA`, `rock_smallA`, and `grass_large`.
-- Used as static garden landmarks in `scenes/3d/garden_arena.tscn`. Ground, garden beds, edging and pond are original scene geometry. Models use embedded materials and work offline.
+- Used as static landmarks in `scenes/3d/garden_arena.tscn` and the three night scenes in `scenes/3d/themes/`. Ground, garden beds, edging and pond are original scene geometry. Models use embedded materials and work offline.
 
 ## Kenney — Tiny Dungeon 1.0
 

@@ -6,7 +6,7 @@
 [ext_resource type="Theme" path="res://scenes/adventure_theme.tres" id="theme"]
 [ext_resource type="PackedScene" path="res://scenes/display_controls.tscn" id="display"]
 [ext_resource type="PackedScene" path="res://scenes/3d/adventure_studio.tscn" id="studio"]
-[ext_resource type="PackedScene" path="res://scenes/3d/garden_arena.tscn" id="arena"]
+[ext_resource type="PackedScene" path="res://scenes/3d/night_themes.tscn" id="arena"]
 [ext_resource type="PackedScene" path="res://scenes/3d/player.tscn" id="player"]
 [ext_resource type="AudioStream" path="res://assets/audio/click_001.ogg" id="click"]
 [ext_resource type="AudioStream" path="res://assets/audio/confirmation_001.ogg" id="collect"]
@@ -172,7 +172,8 @@ visible = false
 [node name="Studio" parent="World" instance=ExtResource("studio")]
 
 
-[node name="Arena" parent="World" instance=ExtResource("arena")]
+[node name="NightThemes" parent="World" instance=ExtResource("arena")]
+unique_name_in_owner = true
 
 
 [node name="Actors" type="Node3D" parent="World"]
@@ -216,7 +217,7 @@ offset_left = 600.0
 offset_top = 310.0
 offset_right = 1320.0
 offset_bottom = 390.0
-text = "Crystal Quest"
+text = "Seed Quest"
 theme_override_font_sizes/font_size = 48
 theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
 
@@ -230,7 +231,7 @@ offset_right = 1220.0
 offset_bottom = 496.0
 item_count = 2
 selected = 0
-popup/item_0/text = "Crystal Quest"
+popup/item_0/text = "Seed Quest"
 popup/item_0/id = 0
 popup/item_1/text = "Sentinel Dash"
 popup/item_1/id = 1
@@ -241,7 +242,7 @@ offset_left = 520.0
 offset_top = 522.0
 offset_right = 1400.0
 offset_bottom = 602.0
-text = "Collect 10 crystals before time runs out. Avoid drones. Send a pulse to make room."
+text = "Collect 10 golden seeds before time runs out. Avoid drones. Send a pulse to make room."
 theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(0.72, 0.81, 0.88, 1)
 autowrap_mode = 3

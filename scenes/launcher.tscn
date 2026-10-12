@@ -244,7 +244,7 @@ offset_left = 1010.0
 offset_top = 834.0
 offset_right = 1500.0
 offset_bottom = 912.0
-text = "Meet Nova. Collect crystals. Dodge drones.\nTwo adventures in a floating world."
+text = "Meet Nova. Collect glowing seeds. Dodge drones.\nThree peaceful night worlds."
 theme_override_font_sizes/font_size = 23
 theme_override_colors/font_color = Color(0.78, 0.79, 0.91, 1)
 
@@ -296,7 +296,7 @@ offset_left = 44.0
 offset_top = 140.0
 offset_right = 1154.0
 offset_bottom = 500.0
-text = "Original 3D assets: Nova, drones, crystals and floating arena.\nGarden models: Kenney Nature Kit — CC0 (kenney.nl/assets/nature-kit)\n\nSound effects: Kenney Interface Sounds — CC0\nTypeface: Nunito — SIL Open Font License 1.1\nLegacy 2D artwork: Kenney Tiny Dungeon — CC0\n\nCognitive games are practice, not a validated medical treatment.\nSource links and licenses: ASSET_CREDITS.md"
+text = "Original 3D assets: Nova, drones, golden seeds and night courtyards.\nGarden models: Kenney Nature Kit — CC0 (kenney.nl/assets/nature-kit)\n\nSound effects: Kenney Interface Sounds — CC0\nTypeface: Nunito — SIL Open Font License 1.1\nLegacy 2D artwork: Kenney Tiny Dungeon — CC0\n\nCognitive games are practice, not a validated medical treatment.\nSource links and licenses: ASSET_CREDITS.md"
 theme_override_font_sizes/font_size = 25
 theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
 

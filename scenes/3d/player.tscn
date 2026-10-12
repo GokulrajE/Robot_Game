@@ -1,5 +1,7 @@
 [gd_scene format=3]
 
+[ext_resource type="Shader" path="res://scenes/3d/soft_glow.gdshader" id="halo_shader"]
+
 [ext_resource type="Script" path="res://scripts/actor_3d.gd" id="logic"]
 
 [sub_resource type="StandardMaterial3D" id="porcelain"]
@@ -11,6 +13,10 @@ roughness = 0.28
 albedo_color = Color(0.04, 0.58, 0.57, 1)
 metallic = 0.5
 roughness = 0.25
+
+emission_enabled = true
+emission = Color(0.05, 0.32, 0.4, 1)
+emission_energy_multiplier = 0.6
 
 [sub_resource type="StandardMaterial3D" id="glass"]
 albedo_color = Color(0.012, 0.055, 0.12, 1)
@@ -193,6 +199,14 @@ rings = 48
 ring_segments = 12
 material = SubResource("light")
 
+[sub_resource type="ShaderMaterial" id="halo_mat"]
+shader = ExtResource("halo_shader")
+shader_parameter/glow_color = Color(0.15, 0.75, 1, 0.48)
+
+[sub_resource type="PlaneMesh" id="halo_mesh"]
+material = SubResource("halo_mat")
+size = Vector2(2.8, 2.8)
+
 [node name="Player" type="Node3D"]
 script = ExtResource("logic")
 
@@ -308,3 +322,15 @@ rotation = Vector3(0, 0, 0)
 scale = Vector3(1, 1, 1)
 mesh = SubResource("mesh16")
 
+
+[node name="SoftGlow" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.03, 0)
+cast_shadow = 0
+mesh = SubResource("halo_mesh")
+
+[node name="GlowLight" type="OmniLight3D" parent="."]
+position = Vector3(0, 0.9, 0)
+light_color = Color(0.15, 0.75, 1, 1)
+light_energy = 0.6
+omni_range = 2.4
+shadow_enabled = false

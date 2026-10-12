@@ -10,14 +10,16 @@ The previous rules, three difficulty levels, scoring, pause/resume, stop, replay
 
 ## Little Adventures — 3D
 
-The current background is a quiet garden, using locally bundled CC0 models from [Kenney Nature Kit](https://kenney.nl/assets/nature-kit). Sage ground, a simple border and a still pond replace the industrial grid. Trees, flowers and stones sit outside the movement bounds. Distinct fixed landmarks help players orient themselves; the open center and static scenery keep visual attention on moving enemies and collectible crystals. This is a readability and orientation design choice, not a claim of measured cognitive benefit.
+Both game sections now use three night environments. **Starlight Courtyard (option B)** opens the first session after launching the app. Each subsequent Start or Play again randomly selects one of the other two themes: **Moonlit Robo Garden** or **Lunar Greenhouse**, or returns to Starlight on later sessions. The immediately previous theme never repeats, including when switching between sections. Pausing, resuming and changing difficulty before starting do not change the active theme.
 
-Play as **Nova**, an original 3D explorer robot, on a continuous floor that fills the display, with hovering drones, faceted crystals, shadows and character animations. The playable area is about 59% larger than the previous arena, with clearance for the HUD. The models are actual meshes.
+The backgrounds are editable 3D scenes inspired by the approved concepts. They retain an open center, peripheral landmarks and visible floor boundaries. Cyan robot lighting, coral enemy lighting and gold seed rewards stay consistent in every world. Emissive materials, soft radial ground glows and local lights work with the existing Compatibility renderer; no renderer switch or bloom dependency is required. Nature models remain bundled locally from [Kenney Nature Kit](https://kenney.nl/assets/nature-kit).
 
-- **Crystal Quest:** collect 10 crystals within 75 seconds while avoiding pursuing creatures.
-- **Sentinel Dash:** survive for 60 seconds; collect crystals and repel enemies for points. Enemies spawn more frequently than in Crystal Quest.
+Play as **Nova**, an original 3D explorer robot, on a continuous floor that fills the display, with hovering drones, glowing golden seeds, shadows and character animations. The playable area is about 59% larger than the previous arena, with clearance for the HUD. The models are actual meshes.
+
+- **Seed Quest:** collect 10 seeds within 75 seconds while avoiding pursuing creatures.
+- **Sentinel Dash:** survive for 60 seconds; collect seeds and repel enemies for points. Enemies spawn more frequently than in Seed Quest.
 - **Left-click or tap the arena** to move Nova to a destination, or **drag** to steer continuously. A ring marks the destination. Nova stops on arrival. **Double-click / double-tap the arena**, or click **Pulse**, to repel nearby enemies; recharge takes three seconds. Right-click no longer triggers pulse. Pause, stop and replay clear the destination; clicks on UI controls do not issue movement commands.
-- Crystals give 100 points, repelled enemies give 50 points. Three hearts, with 1.8 seconds of protection after taking damage.
+- Seeds give 100 points, repelled enemies give 50 points. Three hearts, with 1.8 seconds of protection after taking damage.
 - Start, Pause, Resume, Stop, Play again and navigation back to the library are supported. Pause freezes gameplay, enemy movement, animations and timers. Switching away from the window pauses automatically.
 - Mute works across both sections for the current app session. Best scores are stored separately for both adventure modes.
 
@@ -25,7 +27,7 @@ Play as **Nova**, an original 3D explorer robot, on a continuous floor that fill
 
 Starting either section enters native fullscreen on desktop. F11 can return to a window. The adventure play view shows only score, time and Pause, Stop, Mute and Pulse controls. Mode selection, instructions, graphics settings and navigation appear before the session; pause/results controls appear when needed. The adventure floor extends to every edge of the 16:9 play view.
 
-Crystal pickups award 100 points immediately, with a rising crystal, teal burst, floating +100 and animated score. Pulse readiness uses a distinct gold halo/spark effect, a glowing Pulse button and a one-time chime. The thin bar inside Pulse shows cooldown progress. Effects use scene-authored animation tracks advanced by gameplay time, so pause freezes them. The tenth pickup has a short celebration before the results appear.
+Seed pickups award 100 points immediately, with a rising gold effect, warm burst, floating +100 and animated score. Pulse readiness uses a distinct gold halo/spark effect, a glowing Pulse button and a one-time chime. The thin bar inside Pulse shows cooldown progress. Effects use scene-authored animation tracks advanced by gameplay time, so pause freezes them. The tenth pickup has a short celebration before the results appear.
 
 Effect assets: `scenes/3d/collect_effect.tscn` and `scenes/3d/ready_effect.tscn`. Their animation and geometry are editable directly in Godot. UI animation tracks remain in `scenes/adventure.tscn`; `scripts/game_effect.gd` only handles animation playback and cleanup.
 
@@ -41,7 +43,9 @@ All new and refactored UI is stored in `.tscn` scenes. Colors, typography and bu
 | `scenes/adventure.tscn` | Adventure HUD, controls, world, results and audio |
 | `scenes/3d/arena.tscn` | Original floating arena geometry and decoration |
 | `scenes/3d/expanded_arena.tscn` | Enlarged arena platform with tiles, illuminated edges, lamps and plants, plus surrounding floor |
-| `scenes/3d/garden_arena.tscn` | Active garden background, imported nature landmarks, open clearing and still pond |
+| `scenes/3d/garden_arena.tscn` | Preserved daytime garden background |
+| `scenes/3d/themes/*.tscn` | Active Starlight, Moonlit and Lunar environment scenes |
+| `scenes/3d/night_themes.tscn`, `scripts/night_themes.gd` | Shared theme selection on new sessions |
 | `assets/kenney-nature/` | Six downloaded CC0 3D models and their license |
 | `scenes/3d/expanse.tscn` | Continuous screen-filling adventure floor |
 | `scenes/3d/player.tscn`, `enemy.tscn`, `crystal.tscn` | Original mesh assets, materials, idle/walk animations and shield effect |
@@ -87,6 +91,8 @@ Run each with your Godot executable:
 --headless --path D:/sitar --script tests/test_cognitive_3d.gd
 --path D:/sitar --script tests/capture_4k.gd
 --path D:/sitar --script tests/capture_cognitive_4k.gd
+--headless --path D:/sitar --script tests/test_night_themes.gd
+--path D:/sitar --script tests/capture_night_themes.gd
 ```
 
 Tests cover previous cognitive rules, scene controls, adventure movement/collisions, scoring, invincibility, pulse cooldown, frozen pause state, completion/defeat/timeouts, replay, navigation, focus pause and persistence. Headless tests check that audio streams exist but disable mixing to avoid same-frame audio teardown warnings. Rendered Godot screenshots were inspected for the 3D library, cognitive board and adventure view. The 4K capture test uses a real 3840 × 2160 offscreen render with 4× MSAA, asserts camera clearance at both playable depth boundaries, and saves `.test-data/adventure_4k.png`. It requires a graphics-capable Godot process (do not run it headlessly). The 3D test checks mesh assets, animation states, X/Z movement limits, shielding and graphics presets. Physical touchscreen behavior and subjective sound balance still require device testing.

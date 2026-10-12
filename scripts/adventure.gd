@@ -83,13 +83,14 @@ func prepare() -> void:
 	player.set_protected(false)
 	%PulseRing.hide()
 	reset_input()
-	%Title.text = "Crystal Quest" if mode == 0 else "Sentinel Dash"
-	%Instructions.text = "Collect 10 crystals. Click or drag to move. Double-tap to pulse." if mode == 0 else "Survive 60 seconds. Click or drag to move. Double-tap to pulse."
+	%Title.text = "Seed Quest" if mode == 0 else "Sentinel Dash"
+	%Instructions.text = "Collect 10 golden seeds. Click or drag to move. Double-tap to pulse." if mode == 0 else "Survive 60 seconds. Click or drag to move. Double-tap to pulse."
 	set_animation_active(false)
 	update_hud()
 
 func start_session() -> void:
 	prepare()
+	%NightThemes.begin_session()
 	if auto_fullscreen and DisplayServer.get_name() != "headless" and get_viewport() == get_window():
 		get_window().mode = Window.MODE_FULLSCREEN
 	state = "playing"
@@ -127,7 +128,7 @@ func _process(delta: float) -> void:
 	advance_effects(delta)
 	if win_delay > 0:
 		win_delay = maxf(0, win_delay - delta)
-		if win_delay <= 0: finish("All crystals collected!")
+		if win_delay <= 0: finish("All seeds collected!")
 		return
 	elapsed += delta
 	remaining = maxf(0, remaining - delta)
@@ -329,7 +330,7 @@ func finish(message: String) -> void:
 	config.set_value("progress", "best", best)
 	var saved := config.save("user://adventure_progress.cfg") == OK
 	%ResultTitle.text = message
-	%ResultText.text = "%d points  •  %d crystals  •  %d seconds\nPersonal best: %d\n\n%s" % [score, collected, int(elapsed), best[str(mode)], "Your best score is saved. Ready for another try?" if saved else "Progress could not be saved on this device."]
+	%ResultText.text = "%d points  •  %d seeds  •  %d seconds\nPersonal best: %d\n\n%s" % [score, collected, int(elapsed), best[str(mode)], "Your best score is saved. Ready for another try?" if saved else "Progress could not be saved on this device."]
 	%Resume.text = "Play again"
 	%Overlay.show()
 	%Resume.grab_focus()
