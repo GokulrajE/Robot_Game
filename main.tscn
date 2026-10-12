@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://div31mmt3ingd"]
+
+[ext_resource type="Texture2D" uid="uid://b8gfycedwkytw" path="res://gameover board.png" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://bicq4awrhjeu1" path="res://main.gd" id="2_main1"]
+
+[node name="Node2D" type="Node2D" unique_id=1299495262]
+script = ExtResource("2_main1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1776291052]
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("1_ig7tw")
+
+[node name="TitleLabel" type="Label" parent="." unique_id=712206400]
+offset_left = 510.0
+offset_top = 200.0
+offset_right = 1410.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 64
+text = "SITAR Experiment"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="." unique_id=553280390]
+offset_left = 810.0
+offset_top = 480.0
+offset_right = 1110.0
+offset_bottom = 560.0
+theme_override_font_sizes/font_size = 32
+text = "Start Practice"

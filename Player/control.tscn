@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://d9yn5gp1e4mq6"]
+
+[ext_resource type="Script" path="res://Player/control.gd" id="1_ctrl1"]
+
+[node name="Control" type="Node2D"]
+script = ExtResource("1_ctrl1")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.08, 0.08, 0.12, 1)
+
+[node name="Panel" type="ColorRect" parent="."]
+offset_left = 660.0
+offset_top = 240.0
+offset_right = 1260.0
+offset_bottom = 840.0
+color = Color(0.14, 0.14, 0.2, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+offset_left = 660.0
+offset_top = 265.0
+offset_right = 1260.0
+offset_bottom = 325.0
+text = "Participant Information"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 38
+
+[node name="IDLabel" type="Label" parent="."]
+offset_left = 690.0
+offset_top = 360.0
+offset_right = 960.0
+offset_bottom = 400.0
+text = "Participant ID:"
+theme_override_font_sizes/font_size = 26
+
+[node name="IDField" type="LineEdit" parent="."]
+offset_left = 690.0
+offset_top = 406.0
+offset_right = 1230.0
+offset_bottom = 450.0
+placeholder_text = "e.g. P001"
+theme_override_font_sizes/font_size = 26
+
+[node name="GenderLabel" type="Label" parent="."]
+offset_left = 690.0
+offset_top = 480.0
+offset_right = 960.0
+offset_bottom = 520.0
+text = "Gender:"
+theme_override_font_sizes/font_size = 26
+
+[node name="GenderOption" type="OptionButton" parent="."]
+offset_left = 690.0
+offset_top = 526.0
+offset_right = 1230.0
+offset_bottom = 570.0
+theme_override_font_sizes/font_size = 26
+
+[node name="StrokeLabel" type="Label" parent="."]
+offset_left = 690.0
+offset_top = 600.0
+offset_right = 1230.0
+offset_bottom = 640.0
+text = "Time Since Stroke (months):"
+theme_override_font_sizes/font_size = 26
+
+[node name="StrokeTimeField" type="LineEdit" parent="."]
+offset_left = 690.0
+offset_top = 646.0
+offset_right = 1230.0
+offset_bottom = 690.0
+placeholder_text = "e.g. 6"
+theme_override_font_sizes/font_size = 26
+
+[node name="ErrorLabel" type="Label" parent="."]
+offset_left = 660.0
+offset_top = 718.0
+offset_right = 1260.0
+offset_bottom = 758.0
+visible = false
+text = "Please fill in all fields."
+horizontal_alignment = 1
+modulate = Color(1, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 26
+
+[node name="SubmitButton" type="Button" parent="."]
+offset_left = 810.0
+offset_top = 770.0
+offset_right = 1110.0
+offset_bottom = 830.0
+text = "Start Experiment"
+theme_override_font_sizes/font_size = 28
