@@ -1,0 +1,25 @@
+[gd_scene format=3]
+[ext_resource type="PackedScene" path="res://games/ocean_rescue/scenes/3d/dolphin_detailed.tscn" id="rig"]
+[sub_resource type="Animation" id="r15"]
+length = 2.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:position")
+tracks/0/keys = {"times": PackedFloat32Array(0,0.5,1.0,1.7,2.2), "transitions": PackedFloat32Array(1,1,1,1,1), "update": 0, "values": [Vector3(0,-1.4,-2),Vector3(0,1.5,-1),Vector3(0,2.1,0),Vector3(0,0.6,1.5),Vector3(0,-1.4,2.5)]}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body:rotation:x")
+tracks/1/keys = {"times": PackedFloat32Array(0,0.6,1.2,2.2), "transitions": PackedFloat32Array(1,1,1,1), "update": 0, "values": [-0.6,-0.35,0.25,0.8]}
+
+
+[sub_resource type="AnimationLibrary" id="r16"]
+_data = {&"jump": SubResource("r15")}
+
+
+[node name="Dolphin" type="Node3D"]
+visible = false
+[node name="Body" type="Node3D" parent="."]
+[node name="Rig" parent="Body" instance=ExtResource("rig")]
+scale = Vector3(1.2,1.2,1.2)
+rotation_degrees = Vector3(0,0,0)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 2
+libraries = {&"": SubResource("r16")}

@@ -1,0 +1,578 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://games/ocean_rescue/scripts/ocean_rescue.gd" id="logic"]
+[ext_resource type="Theme" path="res://assets/themes/ocean_theme.tres" id="theme"]
+[ext_resource type="Shader" path="res://assets/shaders/ocean_water.gdshader" id="water"]
+[ext_resource type="PackedScene" path="res://games/ocean_rescue/scenes/3d/boat.tscn" id="boat"]
+[ext_resource type="PackedScene" path="res://games/ocean_rescue/scenes/3d/reef_life.tscn" id="reef_life"]
+[ext_resource type="PackedScene" path="res://games/ocean_rescue/scenes/3d/island.tscn" id="island"]
+[ext_resource type="PackedScene" path="res://scenes/ui/display_controls.tscn" id="display"]
+[ext_resource type="AudioStream" path="res://assets/audio/confirmation_001.ogg" id="collect"]
+[ext_resource type="AudioStream" path="res://assets/audio/select_001.ogg" id="celebrate"]
+[ext_resource type="AudioStream" path="res://assets/audio/click_001.ogg" id="bump"]
+[ext_resource type="AudioStream" path="res://assets/audio/ocean/splash.ogg" id="splash"]
+[ext_resource type="AudioStream" path="res://assets/audio/ocean/waves.ogg" id="ambience"]
+[ext_resource type="Texture2D" path="res://assets/images/ocean/lagoon_menu.png" id="menu_art"]
+[ext_resource type="Texture2D" path="res://assets/images/ocean/pause.svg" id="icon_pause"]
+[ext_resource type="Texture2D" path="res://assets/images/ocean/stop.svg" id="icon_stop"]
+[ext_resource type="Texture2D" path="res://assets/images/ocean/sound.svg" id="icon_sound"]
+[ext_resource type="Texture2D" path="res://assets/images/ocean/clock.svg" id="icon_clock"]
+[ext_resource type="Texture2D" path="res://assets/images/ocean/bottle.svg" id="icon_bottle"]
+[ext_resource type="Texture2D" path="res://assets/images/ocean/star.svg" id="icon_star"]
+[ext_resource type="Texture2D" path="res://assets/images/ocean/reef_floor.png" id="reef_texture"]
+[sub_resource type="ShaderMaterial" id="watermat"]
+resource_local_to_scene = true
+shader = ExtResource("water")
+[sub_resource type="PlaneMesh" id="plane"]
+size = Vector2(100,100)
+subdivide_width = 120
+subdivide_depth = 120
+material = SubResource("watermat")
+[sub_resource type="ProceduralSkyMaterial" id="sky_material"]
+sky_top_color = Color(0.16,0.48,0.73,1)
+sky_horizon_color = Color(0.67,0.88,0.93,1)
+ground_bottom_color = Color(0.07,0.3,0.36,1)
+ground_horizon_color = Color(0.64,0.84,0.88,1)
+sun_angle_max = 12.0
+[sub_resource type="Sky" id="lagoon_sky"]
+sky_material = SubResource("sky_material")
+[sub_resource type="StandardMaterial3D" id="reef_material"]
+albedo_texture = ExtResource("reef_texture")
+albedo_color = Color(0.3,0.64,0.61,1)
+uv1_scale = Vector3(3,3,3)
+roughness = 1.0
+[sub_resource type="PlaneMesh" id="reef_mesh"]
+size = Vector2(100,100)
+material = SubResource("reef_material")
+[sub_resource type="Environment" id="env"]
+background_mode = 2
+sky = SubResource("lagoon_sky")
+reflected_light_source = 2
+ambient_light_source = 3
+ambient_light_color = Color(0.7,0.88,1,1)
+ambient_light_energy = 0.48
+tonemap_mode = 0
+[sub_resource type="StyleBoxFlat" id="panel"]
+bg_color = Color(0.025,0.12,0.18,0.88)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_left = 28
+corner_radius_bottom_right = 28
+border_width_left = 2
+border_width_right = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.42,0.91,0.85,0.7)
+[sub_resource type="StyleBoxFlat" id="track"]
+bg_color = Color(0.02,0.14,0.2,0.85)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_radius_bottom_right = 10
+[sub_resource type="StyleBoxFlat" id="fill"]
+bg_color = Color(1,0.77,0.22,1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_radius_bottom_right = 10
+[sub_resource type="StandardMaterial3D" id="marker_mat"]
+shading_mode = 0
+albedo_color = Color(1,0.88,0.4,1)
+[sub_resource type="TorusMesh" id="marker"]
+inner_radius = 0.25
+outer_radius = 0.31
+material = SubResource("marker_mat")
+[sub_resource type="Animation" id="score_pop"]
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD/Score:scale")
+tracks/0/keys = {"times": PackedFloat32Array(0,0.15,0.55), "transitions": PackedFloat32Array(1,1,1), "update": 0, "values": [Vector2(1,1),Vector2(1.12,1.12),Vector2(1,1)]}
+[sub_resource type="AnimationLibrary" id="score_library"]
+_data = {&"pop": SubResource("score_pop")}
+
+[sub_resource type="StyleBoxFlat" id="menu_card"]
+bg_color = Color(0.018,0.105,0.15,0.91)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+content_margin_left = 20.0
+content_margin_right = 20.0
+
+[sub_resource type="StyleBoxFlat" id="hud_glass"]
+bg_color = Color(0.018,0.13,0.19,0.9)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_left = 30
+corner_radius_bottom_right = 30
+content_margin_left = 20.0
+content_margin_right = 20.0
+
+[sub_resource type="StyleBoxFlat" id="action_gold"]
+bg_color = Color(1,0.76,0.32,1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_left = 20
+corner_radius_bottom_right = 20
+content_margin_left = 20.0
+content_margin_right = 20.0
+
+[sub_resource type="StyleBoxFlat" id="action_hover"]
+bg_color = Color(1,0.86,0.51,1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_left = 20
+corner_radius_bottom_right = 20
+content_margin_left = 20.0
+content_margin_right = 20.0
+
+[node name="OceanRescue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource("theme")
+script = ExtResource("logic")
+[node name="World" type="Node3D" parent="."]
+[node name="Environment" type="WorldEnvironment" parent="World"]
+environment = SubResource("env")
+[node name="Sun" type="DirectionalLight3D" parent="World"]
+rotation_degrees = Vector3(-55,-25,0)
+light_color = Color(1,0.97,0.89,1)
+light_energy = 0.85
+shadow_enabled = true
+directional_shadow_max_distance = 70.0
+[node name="Camera" type="Camera3D" parent="World"]
+unique_name_in_owner = true
+position = Vector3(0,23,27.4)
+rotation_degrees = Vector3(-40,0,0)
+projection = 1
+keep_aspect = 0
+size = 30.0
+current = true
+far = 150.0
+[node name="ReefFloor" type="MeshInstance3D" parent="World"]
+position = Vector3(0,-1.6,0)
+mesh = SubResource("reef_mesh")
+
+[node name="Water" type="MeshInstance3D" parent="World"]
+unique_name_in_owner = true
+mesh = SubResource("plane")
+[node name="Boat" parent="World" instance=ExtResource("boat")]
+unique_name_in_owner = true
+[node name="ReefLife" parent="World" instance=ExtResource("reef_life")]
+unique_name_in_owner = true
+[node name="Litter" type="Node3D" parent="World"]
+unique_name_in_owner = true
+[node name="Buoys" type="Node3D" parent="World"]
+unique_name_in_owner = true
+[node name="Effects" type="Node3D" parent="World"]
+unique_name_in_owner = true
+[node name="Destination" type="MeshInstance3D" parent="World"]
+unique_name_in_owner = true
+visible = false
+mesh = SubResource("marker")
+cast_shadow = 0
+
+[node name="Island0" parent="World" instance=ExtResource("island")]
+position = Vector3(-16,0,-7)
+scale = Vector3(1.4,1.4,1.4)
+
+[node name="Island1" parent="World" instance=ExtResource("island")]
+position = Vector3(16,0,-6)
+scale = Vector3(1.25,1.25,1.25)
+
+[node name="Island2" parent="World" instance=ExtResource("island")]
+position = Vector3(-17,0,10)
+scale = Vector3(1,1,1)
+
+[node name="Island3" parent="World" instance=ExtResource("island")]
+position = Vector3(17,0,12)
+scale = Vector3(1.15,1.15,1.15)
+
+[node name="Island4" parent="World" instance=ExtResource("island")]
+position = Vector3(-6,0,-14)
+scale = Vector3(1.2,1.2,1.2)
+
+[node name="Island5" parent="World" instance=ExtResource("island")]
+position = Vector3(7,0,-15)
+scale = Vector3(1,1,1)
+
+[node name="Setup" type="Control" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="LagoonArtwork" type="TextureRect" parent="Setup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("menu_art")
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="SetupPanel" type="Panel" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 64.0
+offset_top = 100.0
+offset_right = 674.0
+offset_bottom = 984.0
+theme_override_styles/panel = SubResource("menu_card")
+
+[node name="Eyebrow" type="Label" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 108.0
+offset_top = 135.0
+offset_right = 618.0
+offset_bottom = 175.0
+text = "EXPLORE  /  FOCUS  /  RESTORE"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 0
+theme_override_colors/font_color = Color(0.6,1,0.88,1)
+
+[node name="Title" type="Label" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 104.0
+offset_top = 200.0
+offset_right = 624.0
+offset_bottom = 370.0
+text = "Ocean\nRescue"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 74
+horizontal_alignment = 0
+
+[node name="Briefing" type="Label" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 108.0
+offset_top = 400.0
+offset_right = 608.0
+offset_bottom = 530.0
+text = "A little care. A cleaner sea.\n\nDrag to steer. Collect litter for +100.\nNavigate around the orange buoys."
+mouse_filter = 2
+theme_override_font_sizes/font_size = 23
+horizontal_alignment = 0
+autowrap_mode = 3
+
+[node name="Level" type="OptionButton" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 108.0
+offset_top = 575.0
+offset_right = 630.0
+offset_bottom = 641.0
+item_count = 3
+popup/item_0/text = "Level 1 · Calm lagoon"
+popup/item_1/text = "Level 2 · Island trail"
+popup/item_2/text = "Level 3 · Reef ranger"
+
+[node name="Goal" type="Label" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 108.0
+offset_top = 653.0
+offset_right = 630.0
+offset_bottom = 698.0
+text = "8 items · 90 seconds"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 0
+
+[node name="Start" type="Button" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 108.0
+offset_top = 720.0
+offset_right = 630.0
+offset_bottom = 796.0
+text = "Set sail   →"
+
+
+theme_override_styles/normal = SubResource("action_gold")
+
+theme_override_styles/hover = SubResource("action_hover")
+
+theme_override_styles/pressed = SubResource("action_gold")
+
+theme_override_colors/font_color = Color(0.035,0.15,0.18,1)
+
+theme_override_colors/font_hover_color = Color(0.035,0.15,0.18,1)
+
+theme_override_colors/font_pressed_color = Color(0.035,0.15,0.18,1)
+
+[node name="Home" type="Button" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 108.0
+offset_top = 811.0
+offset_right = 630.0
+offset_bottom = 869.0
+text = "←  All games"
+
+
+[node name="Display" parent="Setup" instance=ExtResource("display")]
+offset_left = 108.0
+offset_top = 900.0
+offset_right = 630.0
+offset_bottom = 956.0
+
+[node name="HUD" type="Control" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+visible = false
+
+[node name="ScorePill" type="Panel" parent="HUD"]
+offset_left = 32.0
+offset_top = 28.0
+offset_right = 232.0
+offset_bottom = 100.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("hud_glass")
+
+[node name="TimePill" type="Panel" parent="HUD"]
+offset_left = 248.0
+offset_top = 28.0
+offset_right = 422.0
+offset_bottom = 100.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("hud_glass")
+
+[node name="CollectionPill" type="Panel" parent="HUD"]
+offset_left = 438.0
+offset_top = 28.0
+offset_right = 648.0
+offset_bottom = 100.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("hud_glass")
+
+[node name="ScoreIcon" type="TextureRect" parent="HUD"]
+offset_left = 48.0
+offset_top = 43.0
+offset_right = 90.0
+offset_bottom = 85.0
+texture = ExtResource("icon_star")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="TimeIcon" type="TextureRect" parent="HUD"]
+offset_left = 264.0
+offset_top = 43.0
+offset_right = 306.0
+offset_bottom = 85.0
+texture = ExtResource("icon_clock")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="CollectionIcon" type="TextureRect" parent="HUD"]
+offset_left = 454.0
+offset_top = 43.0
+offset_right = 496.0
+offset_bottom = 85.0
+texture = ExtResource("icon_bottle")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Score" type="Label" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 101.0
+offset_top = 34.0
+offset_right = 216.0
+offset_bottom = 90.0
+text = "0000"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 0
+theme_override_colors/font_outline_color = Color(0.02,0.2,0.28,1)
+
+vertical_alignment = 1
+
+horizontal_alignment = 0
+
+[node name="Time" type="Label" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 316.0
+offset_top = 34.0
+offset_right = 413.0
+offset_bottom = 90.0
+text = "90s"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 0
+theme_override_colors/font_outline_color = Color(0.02,0.2,0.28,1)
+
+vertical_alignment = 1
+
+horizontal_alignment = 0
+
+[node name="Collected" type="Label" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 506.0
+offset_top = 34.0
+offset_right = 633.0
+offset_bottom = 90.0
+text = "0 / 8 collected"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 0
+theme_override_constants/outline_size = 0
+theme_override_colors/font_outline_color = Color(0.02,0.2,0.28,1)
+
+vertical_alignment = 1
+
+[node name="Progress" type="ProgressBar" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 466.0
+offset_top = 90.0
+offset_right = 620.0
+offset_bottom = 94.0
+mouse_filter = 2
+show_percentage = false
+theme_override_styles/background = SubResource("track")
+theme_override_styles/fill = SubResource("fill")
+
+[node name="Pause" type="Button" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 1632.0
+offset_top = 28.0
+offset_right = 1704.0
+offset_bottom = 100.0
+text = ""
+
+
+icon = ExtResource("icon_pause")
+
+expand_icon = true
+
+theme_override_constants/icon_max_width = 32
+
+theme_override_styles/normal = SubResource("hud_glass")
+
+tooltip_text = "Pause"
+
+[node name="Stop" type="Button" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 1720.0
+offset_top = 28.0
+offset_right = 1792.0
+offset_bottom = 100.0
+text = ""
+
+
+icon = ExtResource("icon_stop")
+
+expand_icon = true
+
+theme_override_constants/icon_max_width = 32
+
+theme_override_styles/normal = SubResource("hud_glass")
+
+tooltip_text = "Stop"
+
+[node name="Mute" type="Button" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 1808.0
+offset_top = 28.0
+offset_right = 1880.0
+offset_bottom = 100.0
+text = ""
+
+
+icon = ExtResource("icon_sound")
+
+expand_icon = true
+
+theme_override_constants/icon_max_width = 32
+
+theme_override_styles/normal = SubResource("hud_glass")
+
+tooltip_text = "Toggle sound (highlighted when muted)"
+
+toggle_mode = true
+
+[node name="Overlay" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("panel")
+
+[node name="ResultTitle" type="Label" parent="Overlay"]
+unique_name_in_owner = true
+offset_left = 450.0
+offset_top = 250.0
+offset_right = 1470.0
+offset_bottom = 350.0
+text = "A cleaner lagoon!"
+mouse_filter = 2
+theme_override_font_sizes/font_size = 56
+horizontal_alignment = 1
+
+[node name="ResultText" type="Label" parent="Overlay"]
+unique_name_in_owner = true
+offset_left = 450.0
+offset_top = 380.0
+offset_right = 1470.0
+offset_bottom = 560.0
+text = ""
+mouse_filter = 2
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="Next" type="Button" parent="Overlay"]
+unique_name_in_owner = true
+offset_left = 660.0
+offset_top = 580.0
+offset_right = 1260.0
+offset_bottom = 650.0
+text = "Next level"
+
+
+[node name="Resume" type="Button" parent="Overlay"]
+unique_name_in_owner = true
+offset_left = 660.0
+offset_top = 670.0
+offset_right = 1260.0
+offset_bottom = 740.0
+text = "Play again"
+
+
+[node name="Back" type="Button" parent="Overlay"]
+unique_name_in_owner = true
+offset_left = 660.0
+offset_top = 760.0
+offset_right = 1260.0
+offset_bottom = 825.0
+text = "Back to setup"
+
+
+[node name="CollectSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("collect")
+volume_db = -14.0
+
+[node name="CelebrationSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("celebrate")
+volume_db = -17.0
+
+[node name="BumpSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("bump")
+volume_db = -16.0
+
+[node name="SplashSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("splash")
+volume_db = -14.0
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("ambience")
+volume_db = -23.0
+
+[node name="ScoreAnimation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+callback_mode_process = 2
+libraries = {&"": SubResource("score_library")}

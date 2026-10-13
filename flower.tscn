@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://7xxm3kiek2n5"]
+
+[sub_resource type="StandardMaterial3D" id="mat1"]
+albedo_color = Color(0.25, 0.85, 0.44, 1)
+roughness = 0.75
+
+[sub_resource type="CylinderMesh" id="mesh1"]
+material = SubResource("mat1")
+
+[sub_resource type="StandardMaterial3D" id="mat2"]
+albedo_color = Color(0.25, 0.85, 0.44, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh2"]
+material = SubResource("mat2")
+
+[sub_resource type="StandardMaterial3D" id="mat3"]
+albedo_color = Color(0.98, 0.73, 0.2, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh3"]
+material = SubResource("mat3")
+
+[sub_resource type="StandardMaterial3D" id="mat4"]
+albedo_color = Color(0.98, 0.73, 0.2, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh4"]
+material = SubResource("mat4")
+
+[sub_resource type="StandardMaterial3D" id="mat5"]
+albedo_color = Color(0.98, 0.73, 0.2, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh5"]
+material = SubResource("mat5")
+
+[sub_resource type="StandardMaterial3D" id="mat6"]
+albedo_color = Color(0.98, 0.73, 0.2, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh6"]
+material = SubResource("mat6")
+
+[sub_resource type="StandardMaterial3D" id="mat7"]
+albedo_color = Color(0.98, 0.73, 0.2, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh7"]
+material = SubResource("mat7")
+
+[sub_resource type="StandardMaterial3D" id="mat8"]
+albedo_color = Color(0.98, 0.73, 0.2, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh8"]
+material = SubResource("mat8")
+
+[sub_resource type="StandardMaterial3D" id="mat9"]
+albedo_color = Color(1, 0.69, 0.12, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh9"]
+material = SubResource("mat9")
+
+[node name="Flower" type="Node3D" unique_id=1642389930]
+
+[node name="Stem" type="MeshInstance3D" parent="." unique_id=62393188]
+transform = Transform3D(0.07, 0, 0, 0, 0.8, 0, 0, 0, 0.07, 0, 0.45, 0)
+mesh = SubResource("mesh1")
+
+[node name="Leaf" type="MeshInstance3D" parent="." unique_id=1013832894]
+transform = Transform3D(0.5, 0, 0, 0, 0.15, 0, 0, 0, 0.26, 0.24, 0.36, 0)
+mesh = SubResource("mesh2")
+
+[node name="Petal0" type="MeshInstance3D" parent="." unique_id=532447]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.25, 0.39, 1, 0)
+mesh = SubResource("mesh3")
+
+[node name="Petal1" type="MeshInstance3D" parent="." unique_id=177801679]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.25, 0.195, 1.33775, 0)
+mesh = SubResource("mesh4")
+
+[node name="Petal2" type="MeshInstance3D" parent="." unique_id=34493313]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.25, -0.195, 1.33775, 0)
+mesh = SubResource("mesh5")
+
+[node name="Petal3" type="MeshInstance3D" parent="." unique_id=667438670]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.25, -0.39, 1, 0)
+mesh = SubResource("mesh6")
+
+[node name="Petal4" type="MeshInstance3D" parent="." unique_id=1707289415]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.25, -0.195, 0.6622501, 0)
+mesh = SubResource("mesh7")
+
+[node name="Petal5" type="MeshInstance3D" parent="." unique_id=1532430611]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.25, 0.195, 0.6622501, 0)
+mesh = SubResource("mesh8")
+
+[node name="Heart" type="MeshInstance3D" parent="." unique_id=46772020]
+transform = Transform3D(0.42, 0, 0, 0, 0.42, 0, 0, 0, 0.28, 0, 1, 0.16)
+mesh = SubResource("mesh9")

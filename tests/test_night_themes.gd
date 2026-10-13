@@ -1,5 +1,5 @@
 extends SceneTree
-const THEMES = preload("res://scripts/night_themes.gd")
+const THEMES = preload("res://scripts/shared/night_themes.gd")
 func _initialize() -> void:
 	call_deferred("run_tests")
 func run_tests() -> void:
@@ -7,7 +7,7 @@ func run_tests() -> void:
 	THEMES.last_session_theme = -1
 	var previous := -1
 	var visited := {}
-	for scene_path in ["res://scenes/adventure.tscn", "res://cognitive_hub.tscn"]:
+	for scene_path in ["res://games/adventure/scenes/adventure.tscn", "res://games/cognitive/scenes/cognitive_hub.tscn"]:
 		var game = load(scene_path).instantiate()
 		game.auto_fullscreen = false
 		root.add_child(game)
@@ -30,7 +30,7 @@ func run_tests() -> void:
 		game.queue_free()
 		await process_frame
 	assert(visited.size() == 3)
-	var prize = load("res://scenes/3d/crystal.tscn").instantiate()
+	var prize = load("res://games/adventure/scenes/3d/crystal.tscn").instantiate()
 	assert(prize.has_node("SoftGlow") and prize.has_node("GlowLight"))
 	prize.free()
 	print("PASS: option B first, three themes, no consecutive repeat across sections, pause stability, scene cleanup and glowing prizes")

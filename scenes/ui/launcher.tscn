@@ -1,0 +1,347 @@
+[gd_scene format=3 uid="uid://c8hxg8frtoakm"]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/display_controls.tscn" id="display"]
+[ext_resource type="PackedScene" path="res://games/adventure/scenes/3d/crystal.tscn" id="gem"]
+[ext_resource type="PackedScene" uid="uid://caeybrt2wlxyc" path="res://games/adventure/scenes/3d/player.tscn" id="hero"]
+[ext_resource type="Script" uid="uid://b8c8isosh3pj0" path="res://scripts/shared/launcher.gd" id="logic"]
+[ext_resource type="PackedScene" path="res://games/cognitive/scenes/3d/studio.tscn" id="studio"]
+[ext_resource type="Theme" uid="uid://7k0dx0old0hd" path="res://assets/themes/adventure_theme.tres" id="theme"]
+
+[sub_resource type="StandardMaterial3D" id="plinth"]
+albedo_color = Color(0.1, 0.23, 0.29, 1)
+metallic = 0.5
+roughness = 0.4
+
+[sub_resource type="CylinderMesh" id="mesh1"]
+material = SubResource("plinth")
+top_radius = 3.2
+bottom_radius = 3.5
+height = 0.6
+
+[sub_resource type="StyleBoxFlat" id="mint"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.09, 0.23, 0.24, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22, 0.34, 0.42, 1)
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
+
+[sub_resource type="StyleBoxFlat" id="purple"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.16, 0.16, 0.3, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22, 0.34, 0.42, 1)
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
+
+[sub_resource type="StyleBoxFlat" id="panel"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.065, 0.105, 0.16, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22, 0.34, 0.42, 1)
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
+
+[node name="GameLibrary" type="Control" unique_id=1350315840]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("theme")
+script = ExtResource("logic")
+
+[node name="Showcase" type="Node3D" parent="." unique_id=1817993596]
+
+[node name="Studio" parent="Showcase" unique_id=1019402202 instance=ExtResource("studio")]
+
+[node name="Nova" parent="Showcase" unique_id=1792543771 instance=ExtResource("hero")]
+transform = Transform3D(2.2825358, 0, -0.7416408, 0, 2.4, 0, 0.7416408, 0, 2.2825358, 7, -0.5, 1)
+
+[node name="Pedestal" type="MeshInstance3D" parent="Showcase" unique_id=172084584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -0.8, 1)
+mesh = SubResource("mesh1")
+
+[node name="Crystal" parent="Showcase" unique_id=609474953 instance=ExtResource("gem")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 10.8, 1.4, 1)
+
+[node name="Brand" type="Label" parent="." unique_id=922113927]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 36.0
+offset_right = 872.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.44, 0.89, 0.8, 1)
+theme_override_font_sizes/font_size = 22
+text = "S I T A R   /   PLAY STUDIO"
+
+[node name="Display" parent="." unique_id=186314969 instance=ExtResource("display")]
+layout_mode = 0
+offset_left = 1210.0
+offset_top = 30.0
+offset_right = 1644.0
+offset_bottom = 86.0
+
+[node name="Mute" type="CheckButton" parent="." unique_id=696728229]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1680.0
+offset_top = 30.0
+offset_right = 1850.0
+offset_bottom = 86.0
+text = "Mute"
+
+[node name="Eyebrow" type="Label" parent="." unique_id=1152879663]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 176.0
+offset_right = 1176.0
+offset_bottom = 218.0
+theme_override_colors/font_color = Color(0.44, 0.89, 0.8, 1)
+theme_override_font_sizes/font_size = 20
+text = "A LITTLE PLAY. A NEW PERSPECTIVE."
+
+[node name="Heading" type="Label" parent="." unique_id=2049913777]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 246.0
+offset_right = 1222.0
+offset_bottom = 573.0
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 78
+text = "A world of focus.\nA new dimension."
+
+[node name="Description" type="Label" parent="." unique_id=1279032954]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 526.0
+offset_right = 1198.0
+offset_bottom = 622.0
+theme_override_colors/font_color = Color(0.66, 0.77, 0.86, 1)
+theme_override_font_sizes/font_size = 26
+text = "Gentle challenges for your mind. Beautiful adventures to explore.\nChoose your pace, and make a little progress every day."
+
+[node name="NovaCaption" type="Label" parent="." unique_id=258512627]
+layout_mode = 0
+offset_left = 1300.0
+offset_top = 614.0
+offset_right = 1850.0
+offset_bottom = 654.0
+theme_override_colors/font_color = Color(0.44, 0.89, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+text = "MEET NOVA  /  YOUR 3D EXPLORER"
+
+[node name="GardenCard" type="Panel" parent="." unique_id=688142629]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 696.0
+offset_right = 636.0
+offset_bottom = 956.0
+theme_override_styles/panel = SubResource("mint")
+
+[node name="AdventureCard" type="Panel" parent="." unique_id=1800802181]
+layout_mode = 0
+offset_left = 678.0
+offset_top = 696.0
+offset_right = 1242.0
+offset_bottom = 956.0
+theme_override_styles/panel = SubResource("purple")
+
+[node name="GardenTag" type="Label" parent="." unique_id=2009232343]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 716.0
+offset_right = 610.0
+offset_bottom = 751.0
+theme_override_colors/font_color = Color(0.44, 0.89, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+text = "01  /  COGNITIVE GARDEN"
+
+[node name="GardenTitle" type="Label" parent="." unique_id=2005293625]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 761.0
+offset_right = 610.0
+offset_bottom = 809.0
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "Make room for focus."
+
+[node name="GardenText" type="Label" parent="." unique_id=807860563]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 811.0
+offset_right = 610.0
+offset_bottom = 871.0
+theme_override_colors/font_color = Color(0.73, 0.84, 0.86, 1)
+theme_override_font_sizes/font_size = 21
+text = "Memory, melody and attention.\nThree levels. Your own pace."
+
+[node name="Garden" type="Button" parent="." unique_id=383571606]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 98.0
+offset_top = 884.0
+offset_right = 610.0
+offset_bottom = 936.0
+text = "Enter garden  →"
+
+[node name="AdventureTag" type="Label" parent="." unique_id=725597599]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 716.0
+offset_right = 1216.0
+offset_bottom = 751.0
+theme_override_colors/font_color = Color(0.75, 0.69, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "02  /  3D ADVENTURES"
+
+[node name="AdventureTitle" type="Label" parent="." unique_id=1166925973]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 761.0
+offset_right = 1216.0
+offset_bottom = 809.0
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "Meet Nova."
+
+[node name="AdventureText" type="Label" parent="." unique_id=1391602594]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 811.0
+offset_right = 1216.0
+offset_bottom = 871.0
+theme_override_colors/font_color = Color(0.78, 0.79, 0.91, 1)
+theme_override_font_sizes/font_size = 21
+text = "Collect seeds. Dodge drones.\nExplore three night worlds."
+
+[node name="Adventure" type="Button" parent="." unique_id=2111047707]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 704.0
+offset_top = 884.0
+offset_right = 1216.0
+offset_bottom = 936.0
+text = "Explore in 3D  →"
+
+[node name="Footer" type="Label" parent="." unique_id=1847664649]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 1000.0
+offset_right = 1628.0
+offset_bottom = 1038.0
+theme_override_colors/font_color = Color(0.5, 0.65, 0.75, 1)
+theme_override_font_sizes/font_size = 17
+text = "BUILT FOR YOUR PACE    •    REAL-TIME 3D    •    NATIVE-RESOLUTION RENDERING"
+
+[node name="Credits" type="Button" parent="." unique_id=120612546]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1680.0
+offset_top = 988.0
+offset_right = 1850.0
+offset_bottom = 1046.0
+text = "Credits"
+
+[node name="CreditsPanel" type="Panel" parent="." unique_id=1948499589]
+z_index = 5
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 360.0
+offset_top = 212.0
+offset_right = 1560.0
+offset_bottom = 852.0
+theme_override_styles/panel = SubResource("panel")
+
+[node name="CreditsTitle" type="Label" parent="CreditsPanel" unique_id=158538735]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 36.0
+offset_right = 1154.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "Designed for a clearer world."
+
+[node name="CreditsBody" type="Label" parent="CreditsPanel" unique_id=813370718]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 140.0
+offset_right = 1154.0
+offset_bottom = 500.0
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Original 3D assets: Nova, drones, golden seeds and night courtyards.\nOcean boat: Kenney Watercraft Kit · Dolphin: Quaternius Fish Pack — CC0\nGarden models: Kenney Nature Kit — CC0 (kenney.nl/assets/nature-kit)\n\nSound effects: Kenney Interface Sounds — CC0\nTypeface: Nunito — SIL Open Font License 1.1\nLegacy 2D artwork: Kenney Tiny Dungeon — CC0\n\nCognitive games are practice, not a validated medical treatment.\nSource links and licenses: docs/ASSET_CREDITS.md"
+
+[node name="CloseCredits" type="Button" parent="CreditsPanel" unique_id=1578954577]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 44.0
+offset_top = 532.0
+offset_right = 1154.0
+offset_bottom = 602.0
+text = "Back to games"
+
+[node name="OceanCard" type="Panel" parent="."]
+offset_left = 1284.0
+offset_top = 696.0
+offset_right = 1848.0
+offset_bottom = 956.0
+theme_override_styles/panel = SubResource("mint")
+[node name="OceanTag" type="Label" parent="."]
+offset_left = 1310.0
+offset_top = 716.0
+offset_right = 1822.0
+offset_bottom = 751.0
+text = "03  /  OCEAN RESCUE"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.55,0.94,0.98,1)
+[node name="OceanTitle" type="Label" parent="."]
+offset_left = 1310.0
+offset_top = 761.0
+offset_right = 1822.0
+offset_bottom = 809.0
+text = "A little care for the sea."
+theme_override_font_sizes/font_size = 30
+[node name="OceanText" type="Label" parent="."]
+offset_left = 1310.0
+offset_top = 811.0
+offset_right = 1822.0
+offset_bottom = 871.0
+text = "Steer a boat. Collect floating litter.\nDolphins celebrate every little win."
+theme_override_font_sizes/font_size = 21
+[node name="Ocean" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 1310.0
+offset_top = 884.0
+offset_right = 1822.0
+offset_bottom = 936.0
+text = "Set sail  →"

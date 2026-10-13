@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/shared/night_themes.gd" id="logic"]
+
+[node name="NightThemes" type="Node3D"]
+script = ExtResource("logic")

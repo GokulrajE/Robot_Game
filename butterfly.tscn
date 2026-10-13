@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://dx3jj6buabbct"]
+
+[sub_resource type="StandardMaterial3D" id="mat1"]
+albedo_color = Color(0.55, 0.3, 0.82, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh1"]
+material = SubResource("mat1")
+
+[sub_resource type="StandardMaterial3D" id="mat2"]
+albedo_color = Color(0.78, 0.55, 0.94, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh2"]
+material = SubResource("mat2")
+
+[sub_resource type="StandardMaterial3D" id="mat3"]
+albedo_color = Color(0.97, 0.9, 0.78, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh3"]
+material = SubResource("mat3")
+
+[sub_resource type="StandardMaterial3D" id="mat4"]
+albedo_color = Color(0.045, 0.075, 0.14, 1)
+roughness = 0.75
+
+[sub_resource type="CylinderMesh" id="mesh4"]
+material = SubResource("mat4")
+
+[sub_resource type="StandardMaterial3D" id="mat5"]
+albedo_color = Color(0.55, 0.3, 0.82, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh5"]
+material = SubResource("mat5")
+
+[sub_resource type="StandardMaterial3D" id="mat6"]
+albedo_color = Color(0.78, 0.55, 0.94, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh6"]
+material = SubResource("mat6")
+
+[sub_resource type="StandardMaterial3D" id="mat7"]
+albedo_color = Color(0.97, 0.9, 0.78, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh7"]
+material = SubResource("mat7")
+
+[sub_resource type="StandardMaterial3D" id="mat8"]
+albedo_color = Color(0.045, 0.075, 0.14, 1)
+roughness = 0.75
+
+[sub_resource type="CylinderMesh" id="mesh8"]
+material = SubResource("mat8")
+
+[sub_resource type="StandardMaterial3D" id="mat9"]
+albedo_color = Color(0.045, 0.075, 0.14, 1)
+roughness = 0.75
+
+[sub_resource type="SphereMesh" id="mesh9"]
+material = SubResource("mat9")
+
+[node name="Butterfly" type="Node3D" unique_id=132601575]
+
+[node name="Upper-1" type="MeshInstance3D" parent="." unique_id=1320359040]
+transform = Transform3D(0.8, 0, 0, 0, 0.85, 0, 0, 0, 0.19, -0.4, 0.98, 0)
+mesh = SubResource("mesh1")
+
+[node name="Lower-1" type="MeshInstance3D" parent="." unique_id=101029343]
+transform = Transform3D(0.62, 0, 0, 0, 0.58, 0, 0, 0, 0.19, -0.32, 0.42, 0)
+mesh = SubResource("mesh2")
+
+[node name="Spot-1" type="MeshInstance3D" parent="." unique_id=610778888]
+transform = Transform3D(0.25, 0, 0, 0, 0.27, 0, 0, 0, 0.06, -0.47, 1, 0.11)
+mesh = SubResource("mesh3")
+
+[node name="Antenna-1" type="MeshInstance3D" parent="." unique_id=1395058632]
+transform = Transform3D(0.03197409, -0.15455993, 0, 0.014235782, 0.34714726, 0, 0, 0, 0.035, -0.1, 1.49, 0)
+mesh = SubResource("mesh4")
+
+[node name="Upper1" type="MeshInstance3D" parent="." unique_id=256846758]
+transform = Transform3D(0.8, 0, 0, 0, 0.85, 0, 0, 0, 0.19, 0.4, 0.98, 0)
+mesh = SubResource("mesh5")
+
+[node name="Lower1" type="MeshInstance3D" parent="." unique_id=1509566183]
+transform = Transform3D(0.62, 0, 0, 0, 0.58, 0, 0, 0, 0.19, 0.32, 0.42, 0)
+mesh = SubResource("mesh6")
+
+[node name="Spot1" type="MeshInstance3D" parent="." unique_id=1896883275]
+transform = Transform3D(0.25, 0, 0, 0, 0.27, 0, 0, 0, 0.06, 0.47, 1, 0.11)
+mesh = SubResource("mesh7")
+
+[node name="Antenna1" type="MeshInstance3D" parent="." unique_id=328745094]
+transform = Transform3D(0.03197409, 0.15455993, 0, -0.014235782, 0.34714726, 0, 0, 0, 0.035, 0.1, 1.49, 0)
+mesh = SubResource("mesh8")
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=1512355378]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.23, 0, 0.8, 0.13)
+mesh = SubResource("mesh9")

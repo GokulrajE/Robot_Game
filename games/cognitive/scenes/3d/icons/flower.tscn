@@ -1,0 +1,146 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="mat1"]
+albedo_color = Color(0.25, 0.85, 0.44, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="CylinderMesh" id="mesh1"]
+material = SubResource("mat1")
+
+
+[sub_resource type="StandardMaterial3D" id="mat2"]
+albedo_color = Color(0.25, 0.85, 0.44, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="SphereMesh" id="mesh2"]
+material = SubResource("mat2")
+radius = 0.5
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat3"]
+albedo_color = Color(0.98, 0.73, 0.2, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="SphereMesh" id="mesh3"]
+material = SubResource("mat3")
+radius = 0.5
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat4"]
+albedo_color = Color(0.98, 0.73, 0.2, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="SphereMesh" id="mesh4"]
+material = SubResource("mat4")
+radius = 0.5
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat5"]
+albedo_color = Color(0.98, 0.73, 0.2, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="SphereMesh" id="mesh5"]
+material = SubResource("mat5")
+radius = 0.5
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat6"]
+albedo_color = Color(0.98, 0.73, 0.2, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="SphereMesh" id="mesh6"]
+material = SubResource("mat6")
+radius = 0.5
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat7"]
+albedo_color = Color(0.98, 0.73, 0.2, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="SphereMesh" id="mesh7"]
+material = SubResource("mat7")
+radius = 0.5
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat8"]
+albedo_color = Color(0.98, 0.73, 0.2, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="SphereMesh" id="mesh8"]
+material = SubResource("mat8")
+radius = 0.5
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat9"]
+albedo_color = Color(1, 0.69, 0.12, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="SphereMesh" id="mesh9"]
+material = SubResource("mat9")
+radius = 0.5
+height = 1.0
+
+[node name="Flower" type="Node3D"]
+
+[node name="Stem" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.45, 0)
+scale = Vector3(0.07, 0.8, 0.07)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh1")
+
+[node name="Leaf" type="MeshInstance3D" parent="."]
+position = Vector3(0.24, 0.36, 0)
+scale = Vector3(0.5, 0.15, 0.26)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh2")
+
+[node name="Petal0" type="MeshInstance3D" parent="."]
+position = Vector3(0.39, 1.0, 0)
+scale = Vector3(0.5, 0.5, 0.25)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh3")
+
+[node name="Petal1" type="MeshInstance3D" parent="."]
+position = Vector3(0.19500000000000006, 1.3377499074759311, 0)
+scale = Vector3(0.5, 0.5, 0.25)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh4")
+
+[node name="Petal2" type="MeshInstance3D" parent="."]
+position = Vector3(-0.19499999999999992, 1.3377499074759311, 0)
+scale = Vector3(0.5, 0.5, 0.25)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh5")
+
+[node name="Petal3" type="MeshInstance3D" parent="."]
+position = Vector3(-0.39, 1.0, 0)
+scale = Vector3(0.5, 0.5, 0.25)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh6")
+
+[node name="Petal4" type="MeshInstance3D" parent="."]
+position = Vector3(-0.19500000000000017, 0.662250092524069, 0)
+scale = Vector3(0.5, 0.5, 0.25)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh7")
+
+[node name="Petal5" type="MeshInstance3D" parent="."]
+position = Vector3(0.19500000000000006, 0.6622500925240689, 0)
+scale = Vector3(0.5, 0.5, 0.25)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh8")
+
+[node name="Heart" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1, 0.16)
+scale = Vector3(0.42, 0.42, 0.28)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh9")

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://5712lnlshbqr"]
+
+[sub_resource type="Environment" id="environment"]
+background_mode = 1
+background_color = Color(0.032, 0.052, 0.09, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.64, 0.79, 1, 1)
+ambient_light_energy = 0.5
+reflected_light_source = 2
+tonemap_mode = 2
+
+[node name="Studio" type="Node3D" unique_id=1810876740]
+
+[node name="Environment" type="WorldEnvironment" parent="." unique_id=920881193]
+environment = SubResource("environment")
+
+[node name="Key" type="DirectionalLight3D" parent="." unique_id=1807260586]
+transform = Transform3D(0.8660254, 0.40957603, -0.28678823, 0, 0.57357645, 0.81915206, 0.5, -0.7094065, 0.49673176, 0, 0, 0)
+light_color = Color(0.64, 0.73, 1, 1)
+light_energy = 0.45
+shadow_enabled = true
+directional_shadow_max_distance = 60.0
+
+[node name="Fill" type="DirectionalLight3D" parent="." unique_id=162375045]
+transform = Transform3D(-0.76604444, -0.32139382, 0.5566704, 0, 0.8660254, 0.5, -0.64278764, 0.38302222, -0.66341394, 0, 0, 0)
+light_color = Color(0.34, 0.72, 1, 1)
+light_energy = 0.16
+
+[node name="Camera" type="Camera3D" parent="." unique_id=1280565303]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 22, 22)
+keep_aspect = 0
+v_offset = 0.35
+projection = 1
+current = true
+size = 28.5
+far = 100.0

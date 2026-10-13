@@ -1,0 +1,12 @@
+[gd_scene format=3]
+[ext_resource type="Shader" path="res://assets/shaders/ocean_rock.gdshader" id="shader"]
+[sub_resource type="ShaderMaterial" id="material"]
+shader = ExtResource("shader")
+[sub_resource type="SphereMesh" id="mesh"]
+radius = 0.5
+height = 1.0
+radial_segments = 32
+rings = 16
+material = SubResource("material")
+[node name="ShoreRock" type="MeshInstance3D"]
+mesh = SubResource("mesh")

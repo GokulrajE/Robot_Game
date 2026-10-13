@@ -1,0 +1,39 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="r1"]
+albedo_color = Color(0.95,0.91,0.76,1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="r2"]
+albedo_color = Color(0.97,0.32,0.21,1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="r3"]
+albedo_color = Color(0.97,0.99,1,1)
+roughness = 0.65
+
+[sub_resource type="BoxMesh" id="r4"]
+material = SubResource("r1")
+
+
+[sub_resource type="BoxMesh" id="r5"]
+material = SubResource("r2")
+
+
+[node name="Litter" type="Node3D"]
+
+
+[node name="Model" type="Node3D" parent="."]
+
+
+[node name="Container" type="MeshInstance3D" parent="Model"]
+position = Vector3(0, 0.18, 0)
+scale = Vector3(0.75, 0.34, 0.65)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r4")
+
+[node name="Lid" type="MeshInstance3D" parent="Model"]
+position = Vector3(0, 0.38, 0)
+scale = Vector3(0.8, 0.08, 0.7)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r5")

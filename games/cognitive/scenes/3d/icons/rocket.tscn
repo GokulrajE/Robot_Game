@@ -1,0 +1,99 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="mat1"]
+albedo_color = Color(0.83, 0.89, 0.97, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="SphereMesh" id="mesh1"]
+material = SubResource("mat1")
+radius = 0.5
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat2"]
+albedo_color = Color(0.22, 0.36, 0.83, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="CylinderMesh" id="mesh2"]
+material = SubResource("mat2")
+top_radius = 0.0
+bottom_radius = 0.35
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat3"]
+albedo_color = Color(0.18, 0.72, 1, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="SphereMesh" id="mesh3"]
+material = SubResource("mat3")
+radius = 0.5
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat4"]
+albedo_color = Color(0.22, 0.36, 0.83, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="PrismMesh" id="mesh4"]
+material = SubResource("mat4")
+
+
+[sub_resource type="StandardMaterial3D" id="mat5"]
+albedo_color = Color(0.22, 0.36, 0.83, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="PrismMesh" id="mesh5"]
+material = SubResource("mat5")
+
+
+[sub_resource type="StandardMaterial3D" id="mat6"]
+albedo_color = Color(1, 0.69, 0.12, 1)
+roughness = 0.75
+metallic = 0.0
+
+[sub_resource type="CylinderMesh" id="mesh6"]
+material = SubResource("mat6")
+top_radius = 0.23
+bottom_radius = 0.0
+height = 0.55
+
+[node name="Rocket" type="Node3D"]
+
+[node name="Body" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.75, 0)
+scale = Vector3(0.7, 1.4, 0.7)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh1")
+
+[node name="Nose" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.42, 0)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh2")
+
+[node name="Window" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.94, 0.34)
+scale = Vector3(0.32, 0.32, 0.09)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh3")
+
+[node name="Fin-0.37" type="MeshInstance3D" parent="."]
+position = Vector3(-0.37, 0.35, 0)
+scale = Vector3(0.38, 0.6, 0.32)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh4")
+
+[node name="Fin0.37" type="MeshInstance3D" parent="."]
+position = Vector3(0.37, 0.35, 0)
+scale = Vector3(0.38, 0.6, 0.32)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh5")
+
+[node name="Flame" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.08, 0)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("mesh6")

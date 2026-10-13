@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://csbq3j8vwlv1f"]
 
 [ext_resource type="Script" path="res://scripts/actor.gd" id="script"]
 [ext_resource type="Texture2D" path="res://assets/kenney-dungeon/Tiles/tile_0110.png" id="sprite"]
@@ -8,26 +8,36 @@ resource_name = "float"
 length = 1.2
 loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite:position")
-tracks/0/keys = {"times": PackedFloat32Array(0, 0.6, 1.2), "transitions": PackedFloat32Array(1, 1, 1), "update": 0, "values": [Vector2(0, -3), Vector2(0, -7), Vector2(0, -3)]}
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -3), Vector2(0, -7), Vector2(0, -3)]
+}
 
 [sub_resource type="AnimationLibrary" id="library"]
-_data = {"float": SubResource("float")}
+_data = {
+&"float": SubResource("float")
+}
 
-[node name="Enemy" type="Node2D"]
+[node name="Enemy" type="Node2D" unique_id=1560215979]
 texture_filter = 1
 script = ExtResource("script")
 
-[node name="Shadow" type="Polygon2D" parent="."]
+[node name="Shadow" type="Polygon2D" parent="." unique_id=81048516]
 color = Color(0.06, 0.08, 0.12, 0.35)
 polygon = PackedVector2Array(-18, 8, -12, 3, 12, 3, 18, 8, 12, 13, -12, 13)
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=726937321]
 position = Vector2(0, -3)
 scale = Vector2(3, 3)
 texture = ExtResource("sprite")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {&"": SubResource("library")}
-autoplay = "float"
-
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=65022669]
+libraries/ = SubResource("library")
+autoplay = &"float"

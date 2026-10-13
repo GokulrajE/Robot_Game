@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://div31mmt3ingd"]
+[gd_scene format=3]
 
-[ext_resource type="Texture2D" uid="uid://b8gfycedwkytw" path="res://gameover board.png" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://bicq4awrhjeu1" path="res://main.gd" id="2_main1"]
+[ext_resource type="Texture2D" path="res://assets/images/gameover board.png" id="1_ig7tw"]
+[ext_resource type="Script" path="res://games/hand_tracking/scripts/main.gd" id="2_main1"]
 
 [node name="Node2D" type="Node2D" unique_id=1299495262]
 script = ExtResource("2_main1")

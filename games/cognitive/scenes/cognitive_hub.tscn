@@ -1,0 +1,401 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/environments/night_themes.tscn" id="night"]
+
+[ext_resource type="Script" path="res://games/cognitive/scripts/cognitive_hub.gd" id="logic"]
+[ext_resource type="Theme" path="res://assets/themes/cognitive_theme.tres" id="theme"]
+[ext_resource type="PackedScene" path="res://games/cognitive/scenes/3d/cognitive_tile.tscn" id="tile"]
+[ext_resource type="PackedScene" path="res://games/adventure/scenes/3d/adventure_studio.tscn" id="studio"]
+[ext_resource type="PackedScene" path="res://scenes/ui/display_controls.tscn" id="display"]
+[ext_resource type="AudioStream" path="res://assets/audio/click_001.ogg" id="click"]
+[ext_resource type="AudioStream" path="res://assets/audio/confirmation_001.ogg" id="success"]
+
+[sub_resource type="StandardMaterial3D" id="floor_mat"]
+albedo_color = Color(0.09, 0.15, 0.25, 1)
+roughness = 0.75
+
+[sub_resource type="PlaneMesh" id="floor"]
+material = SubResource("floor_mat")
+size = Vector2(80, 80)
+
+[sub_resource type="StyleBoxFlat" id="panel"]
+bg_color = Color(0.96, 0.94, 0.88, 0.99)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_left = 32
+corner_radius_bottom_right = 32
+
+
+[sub_resource type="StyleBoxFlat" id="memory"]
+bg_color = Color(0.18, 0.47, 0.44, 1)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_left = 22
+corner_radius_bottom_right = 22
+
+[sub_resource type="StyleBoxFlat" id="melody"]
+bg_color = Color(0.44, 0.31, 0.63, 1)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_left = 22
+corner_radius_bottom_right = 22
+
+[sub_resource type="StyleBoxFlat" id="focus_card"]
+bg_color = Color(0.65, 0.35, 0.13, 1)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_left = 22
+corner_radius_bottom_right = 22
+
+[node name="CognitiveGarden" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("theme")
+script = ExtResource("logic")
+
+[node name="World" type="Node3D" parent="."]
+[node name="Studio" parent="World" instance=ExtResource("studio")]
+[node name="Camera" type="Camera3D" parent="World"]
+position = Vector3(0, 18, 16)
+rotation_degrees = Vector3(-48.366, 0, 0)
+projection = 1
+size = 19.5
+keep_aspect = 0
+current = true
+[node name="NightThemes" parent="World" instance=ExtResource("night")]
+unique_name_in_owner = true
+position = Vector3(0, 0, 0.8)
+scale = Vector3(0.68, 0.68, 0.68)
+[node name="Board" type="Node3D" parent="World"]
+unique_name_in_owner = true
+[node name="TargetIcon" parent="World" instance=ExtResource("tile")]
+unique_name_in_owner = true
+position = Vector3(0, 0, -3.9)
+scale = Vector3(0.62, 0.62, 0.62)
+visible = false
+
+[node name="Setup" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="Card" type="Panel" parent="Setup"]
+offset_left = 280.0
+offset_top = 180.0
+offset_right = 1640.0
+offset_bottom = 980.0
+theme_override_styles/panel = SubResource("panel")
+
+[node name="Title" type="Label" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 790.0
+offset_top = 240.0
+offset_right = 1570.0
+offset_bottom = 318.0
+text = "Memory Meadow"
+theme_override_font_sizes/font_size = 46
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 790.0
+offset_top = 330.0
+offset_right = 1570.0
+offset_bottom = 410.0
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 25
+
+autowrap_mode = 3
+
+[node name="GameSelect" type="OptionButton" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 560.0
+offset_top = 450.0
+offset_right = 1040.0
+offset_bottom = 520.0
+item_count = 3
+popup/item_0/text = "Memory Meadow"
+popup/item_0/id = 0
+popup/item_1/text = "Melody Steps"
+popup/item_1/id = 1
+popup/item_2/text = "Focus Finder"
+popup/item_2/id = 2
+
+visible = false
+
+[node name="Difficulty" type="OptionButton" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 840.0
+offset_top = 445.0
+offset_right = 1520.0
+offset_bottom = 510.0
+item_count = 3
+popup/item_0/text = "Level 1 · Discover"
+popup/item_0/id = 0
+popup/item_1/text = "Level 2 · Develop"
+popup/item_1/id = 1
+popup/item_2/text = "Level 3 · Challenge"
+popup/item_2/id = 2
+
+[node name="Start" type="Button" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 840.0
+offset_top = 600.0
+offset_right = 1520.0
+offset_bottom = 675.0
+text = "Start session"
+
+
+[node name="Motion" type="CheckButton" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 840.0
+offset_top = 695.0
+offset_right = 1520.0
+offset_bottom = 745.0
+text = "Reduced motion"
+
+
+[node name="Resources" type="Button" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 840.0
+offset_top = 770.0
+offset_right = 1520.0
+offset_bottom = 824.0
+text = "About cognitive practice"
+
+
+[node name="Home" type="Button" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 340.0
+offset_top = 815.0
+offset_right = 730.0
+offset_bottom = 880.0
+text = "Back to game library"
+
+
+[node name="Display" parent="Setup" instance=ExtResource("display")]
+offset_left = 840.0
+offset_top = 860.0
+offset_right = 1520.0
+offset_bottom = 930.0
+
+[node name="HUD" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="ScoreCaption" type="Label" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 64.0
+offset_top = 26.0
+offset_right = 560.0
+offset_bottom = 60.0
+text = "SCORE   /   TIME"
+theme_override_font_sizes/font_size = 20
+
+theme_override_colors/font_color = Color(0.98, 0.95, 0.85, 1)
+
+[node name="Stats" type="Label" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 64.0
+offset_top = 58.0
+offset_right = 760.0
+offset_bottom = 125.0
+text = ""
+theme_override_font_sizes/font_size = 46
+
+theme_override_colors/font_color = Color(0.98, 0.95, 0.85, 1)
+
+[node name="Status" type="Label" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 580.0
+offset_top = 42.0
+offset_right = 1380.0
+offset_bottom = 100.0
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 25
+
+theme_override_colors/font_color = Color(0.98, 0.95, 0.85, 1)
+
+[node name="Pause" type="Button" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 1430.0
+offset_top = 36.0
+offset_right = 1560.0
+offset_bottom = 96.0
+text = "Pause"
+
+
+[node name="Stop" type="Button" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 1576.0
+offset_top = 36.0
+offset_right = 1696.0
+offset_bottom = 96.0
+text = "Stop"
+
+
+[node name="Mute" type="Button" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 1712.0
+offset_top = 36.0
+offset_right = 1856.0
+offset_bottom = 96.0
+text = "Mute"
+toggle_mode = true
+
+[node name="Progress" type="ProgressBar" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 64.0
+offset_top = 132.0
+offset_right = 500.0
+offset_bottom = 140.0
+show_percentage = false
+mouse_filter = 2
+
+[node name="Overlay" type="Panel" parent="."]
+unique_name_in_owner = true
+offset_left = 440.0
+offset_top = 210.0
+offset_right = 1480.0
+offset_bottom = 890.0
+visible = false
+theme_override_styles/panel = SubResource("panel")
+
+[node name="OverlayTitle" type="Label" parent="Overlay"]
+unique_name_in_owner = true
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 980.0
+offset_bottom = 140.0
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+
+[node name="OverlayText" type="Label" parent="Overlay"]
+unique_name_in_owner = true
+offset_left = 60.0
+offset_top = 155.0
+offset_right = 980.0
+offset_bottom = 350.0
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OverlayAction" type="Button" parent="Overlay"]
+unique_name_in_owner = true
+offset_left = 110.0
+offset_top = 450.0
+offset_right = 930.0
+offset_bottom = 530.0
+text = "Play again"
+
+
+[node name="Back" type="Button" parent="Overlay"]
+unique_name_in_owner = true
+offset_left = 110.0
+offset_top = 550.0
+offset_right = 930.0
+offset_bottom = 620.0
+text = "Choose a game"
+
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("click")
+volume_db = -12.0
+
+[node name="SuccessSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("success")
+volume_db = -12.0
+
+[node name="HubEyebrow" type="Label" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 340.0
+offset_top = 245.0
+offset_right = 740.0
+offset_bottom = 285.0
+text = "COGNITIVE GARDEN"
+theme_override_font_sizes/font_size = 20
+
+[node name="HubHeading" type="Label" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 340.0
+offset_top = 290.0
+offset_right = 740.0
+offset_bottom = 360.0
+text = "Choose your practice"
+theme_override_font_sizes/font_size = 30
+
+[node name="MemoryCard" type="Button" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 340.0
+offset_top = 390.0
+offset_right = 730.0
+offset_bottom = 484.0
+text = "Memory Meadow · Recall"
+theme_override_styles/normal = SubResource("memory")
+theme_override_font_sizes/font_size = 21
+
+[node name="MelodyCard" type="Button" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 340.0
+offset_top = 510.0
+offset_right = 730.0
+offset_bottom = 604.0
+text = "Melody Steps · Sequence"
+theme_override_styles/normal = SubResource("melody")
+theme_override_font_sizes/font_size = 21
+
+[node name="FocusCard" type="Button" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 340.0
+offset_top = 630.0
+offset_right = 730.0
+offset_bottom = 724.0
+text = "Focus Finder · Attention"
+theme_override_styles/normal = SubResource("focus_card")
+theme_override_font_sizes/font_size = 21
+
+[node name="LevelDetails" type="Label" parent="Setup"]
+unique_name_in_owner = true
+offset_left = 840.0
+offset_top = 525.0
+offset_right = 1520.0
+offset_bottom = 580.0
+autowrap_mode = 3
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 21
+
+[node name="LevelHUD" type="Label" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 580.0
+offset_top = 105.0
+offset_right = 1380.0
+offset_bottom = 145.0
+text = "LEVEL 1 / 3"
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.7, 0.86, 0.8, 1)
+
+[node name="NextLevel" type="Button" parent="Overlay"]
+unique_name_in_owner = true
+offset_left = 110.0
+offset_top = 365.0
+offset_right = 930.0
+offset_bottom = 435.0
+text = "Next level"
+visible = false

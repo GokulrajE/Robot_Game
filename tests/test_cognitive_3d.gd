@@ -2,7 +2,7 @@ extends SceneTree
 func _initialize() -> void:
 	call_deferred("run_tests")
 func run_tests() -> void:
-	var game = load("res://cognitive_hub.tscn").instantiate()
+	var game = load("res://games/cognitive/scenes/cognitive_hub.tscn").instantiate()
 	root.add_child(game)
 	game.set_process(false)
 	game.auto_fullscreen = false

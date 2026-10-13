@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://les5t1mksrlh"]
+
+[ext_resource type="Script" uid="uid://dpdht5fd3dkvh" path="res://games/cognitive/scripts/cognitive_tile.gd" id="1_22ypc"]
+
+[sub_resource type="StandardMaterial3D" id="mat1"]
+albedo_color = Color(0.42, 0.43, 0.4, 1)
+metallic = 0.12
+roughness = 0.36
+
+[sub_resource type="CylinderMesh" id="mesh1"]
+material = SubResource("mat1")
+top_radius = 1.0
+bottom_radius = 1.08
+height = 0.16
+
+[sub_resource type="StandardMaterial3D" id="mat2"]
+albedo_color = Color(0.63, 0.65, 0.62, 1)
+metallic = 0.12
+roughness = 0.36
+
+[sub_resource type="SphereMesh" id="mesh2"]
+material = SubResource("mat2")
+
+[sub_resource type="StandardMaterial3D" id="mat3"]
+albedo_color = Color(0.77, 0.77, 0.69, 1)
+metallic = 0.12
+roughness = 0.36
+
+[sub_resource type="SphereMesh" id="mesh3"]
+material = SubResource("mat3")
+
+[sub_resource type="StandardMaterial3D" id="mat4"]
+albedo_color = Color(0.86, 0.84, 0.75, 1)
+metallic = 0.12
+roughness = 0.36
+
+[sub_resource type="SphereMesh" id="mesh4"]
+material = SubResource("mat4")
+
+[sub_resource type="StandardMaterial3D" id="mat5"]
+albedo_color = Color(1, 0.69, 0.12, 1)
+metallic = 0.12
+roughness = 0.36
+
+[sub_resource type="TorusMesh" id="mesh5"]
+material = SubResource("mat5")
+inner_radius = 0.93
+outer_radius = 1.04
+
+[sub_resource type="Animation" id="bounce"]
+resource_name = "bounce"
+length = 0.48
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.48),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.2, 0), Vector3(0, 0.75, 0), Vector3(0, 0.2, 0)]
+}
+
+[sub_resource type="Animation" id="match"]
+resource_name = "match"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.283185, 0)]
+}
+
+[sub_resource type="Animation" id="reveal"]
+resource_name = "reveal"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.05, 0.05, 0.05), Vector3(1.15, 1.15, 1.15), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="anims"]
+_data = {
+&"bounce": SubResource("bounce"),
+&"match": SubResource("match"),
+&"reveal": SubResource("reveal")
+}
+
+[node name="CognitiveTile" type="Node3D" unique_id=276563160]
+script = ExtResource("1_22ypc")
+
+[node name="Pedestal" type="MeshInstance3D" parent="." unique_id=132057139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+mesh = SubResource("mesh1")
+
+[node name="Pivot" type="Node3D" parent="." unique_id=2130983095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+
+[node name="Icon" type="Node3D" parent="Pivot" unique_id=21912499]
+
+[node name="Cover" type="Node3D" parent="Pivot" unique_id=476490018]
+
+[node name="CloudA" type="MeshInstance3D" parent="Pivot/Cover" unique_id=1062823745]
+transform = Transform3D(0.9, 0, 0, 0, 0.75, 0, 0, 0, 0.85, -0.3, 0.42, 0)
+mesh = SubResource("mesh2")
+
+[node name="CloudB" type="MeshInstance3D" parent="Pivot/Cover" unique_id=1789113914]
+transform = Transform3D(0.95, 0, 0, 0, 0.85, 0, 0, 0, 0.9, 0.28, 0.42, 0)
+mesh = SubResource("mesh3")
+
+[node name="CloudC" type="MeshInstance3D" parent="Pivot/Cover" unique_id=534589272]
+transform = Transform3D(0.85, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.69, 0)
+mesh = SubResource("mesh4")
+
+[node name="Halo" type="MeshInstance3D" parent="." unique_id=346838953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+visible = false
+mesh = SubResource("mesh5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=461705934]
+callback_mode_process = 2
+libraries/ = SubResource("anims")

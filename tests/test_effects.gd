@@ -3,7 +3,7 @@ var game
 func _initialize() -> void:
 	call_deferred("run_tests")
 func run_tests() -> void:
-	game = load("res://scenes/adventure.tscn").instantiate()
+	game = load("res://games/adventure/scenes/adventure.tscn").instantiate()
 	game.auto_fullscreen = false
 	root.add_child(game)
 	game.set_process(false)
@@ -17,7 +17,7 @@ func run_tests() -> void:
 	for label in game.find_children("*", "Label", true, false):
 		if label.is_visible_in_tree(): hud_labels.append(String(label.name))
 	hud_labels.sort()
-	assert(hud_labels == ["Score", "ScoreCaption", "Time", "TimeCaption"])
+	assert(hud_labels == ["LevelHUD", "Score", "ScoreCaption", "Status", "Time", "TimeCaption"])
 	assert(game.ready_notifications == 1)
 	game.crystals[0].position = game.player.position
 	game.check_collisions()

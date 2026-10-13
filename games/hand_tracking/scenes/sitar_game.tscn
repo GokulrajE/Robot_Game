@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://c7xjm4fn8c2kp"]
+
+[ext_resource type="Script" uid="uid://bvh2m1htqx7sc" path="res://games/hand_tracking/scripts/refferance.gd" id="1_ref01"]
+
+[node name="SitarGame" type="Node2D" unique_id=29406604]
+script = ExtResource("1_ref01")
+
+[node name="CountdownLabel" type="Label" parent="." unique_id=1871639893]
+visible = false
+offset_left = 560.0
+offset_top = 550.0
+offset_right = 1360.0
+offset_bottom = 760.0
+theme_override_font_sizes/font_size = 44
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LABEL2" type="Label" parent="." unique_id=1528021047]
+visible = false
+offset_left = 760.0
+offset_top = 550.0
+offset_right = 1160.0
+offset_bottom = 700.0
+theme_override_font_sizes/font_size = 80
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="." unique_id=1727095804]
+visible = false
+offset_left = 840.0
+offset_top = 480.0
+offset_right = 1080.0
+offset_bottom = 556.0
+theme_override_font_sizes/font_size = 28
+text = "Continue"
+
+[node name="TouchErrorLabel" type="Label" parent="." unique_id=674388953]
+visible = false
+modulate = Color(1, 0.3, 0.3, 1)
+offset_left = 560.0
+offset_top = 690.0
+offset_right = 1360.0
+offset_bottom = 750.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1

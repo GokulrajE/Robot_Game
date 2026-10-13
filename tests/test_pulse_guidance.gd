@@ -1,0 +1,50 @@
+extends SceneTree
+func _initialize() -> void:
+	call_deferred("run_tests")
+func run_tests() -> void:
+	var game = load("res://games/adventure/scenes/adventure.tscn").instantiate()
+	game.auto_fullscreen = false
+	root.add_child(game)
+	game.set_process(false)
+	game.start_session()
+	game.clear_actors()
+	var indicator = game.get_node("%NovaPulse")
+	assert(indicator.get_node("Status").text == "PULSE READY")
+	game.send_pulse()
+	assert(indicator.get_node("Status").text == "PULSE  3.0s")
+	assert(indicator.get_node("Charge").value == 0)
+	game._process(1.0)
+	assert(absf(indicator.get_node("Charge").value - 100.0 / 3.0) < 0.02)
+	var previous = indicator.position
+	game.player.position.x += 4
+	game.update_hud()
+	assert(indicator.position.x > previous.x)
+	game.toggle_pause()
+	game._process(5.0)
+	assert(game.cooldown == 2.0)
+	assert(game.get_node("%PauseBriefing").visible)
+	game.toggle_pause()
+	game._process(2.01)
+	assert(indicator.get_node("Status").text == "PULSE READY")
+	assert(indicator.get_node("Charge").value == 100)
+	assert(game.ready_notifications == 2)
+	game.player.position = Vector3(13.2, 0, -5.6)
+	game.update_hud()
+	assert(indicator.position.y >= 122)
+	game.start_session()
+	assert(indicator.get_node("Charge").value == 100)
+	game.clear_actors()
+	game.spawn_enemy()
+	var enemy = game.enemies[0]
+	enemy.position = Vector3(0, 0, -4)
+	enemy.set_meta("role", 0)
+	enemy.set_meta("clock", 0.0)
+	game.move_enemies(0.01)
+	assert(enemy.get_node("ChargeWarning").visible)
+	assert(is_equal_approx(enemy.get_node("ChargeWarning/Lane").scale.z * 6.5, 7.0 * 0.65))
+	game.check_collisions()
+	assert(game.hearts == 3) # Warning lane itself never deals damage.
+	game.queue_free()
+	await process_frame
+	print("PASS: overhead recharge, following, pause, ready cue, replay and non-damaging warning")
+	quit()

@@ -11,7 +11,7 @@ func capture() -> void:
 	viewport.msaa_3d = Viewport.MSAA_4X
 	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	root.add_child(viewport)
-	var game = load("res://scenes/adventure.tscn").instantiate()
+	var game = load("res://games/adventure/scenes/adventure.tscn").instantiate()
 	viewport.add_child(game)
 	game.start_session()
 	game.set_process(false)

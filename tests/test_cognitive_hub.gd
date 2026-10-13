@@ -3,7 +3,7 @@ var game
 func _initialize() -> void:
 	call_deferred("run_tests")
 func run_tests() -> void:
-	game = load("res://cognitive_hub.tscn").instantiate()
+	game = load("res://games/cognitive/scenes/cognitive_hub.tscn").instantiate()
 	root.add_child(game)
 	game.set_process(false)
 	# Headless tests run many actions in one frame; keep audio resources checked, but skip mixing.

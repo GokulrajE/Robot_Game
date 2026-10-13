@@ -1,15 +1,16 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/display_controls.gd" id="logic"]
+[ext_resource type="Script" path="res://scripts/shared/display_controls.gd" id="logic"]
 
-[node name="DisplayControls" type="HBoxContainer"]
-script = ExtResource("logic")
+[node name="DisplayControls" type="HBoxContainer" unique_id=570506888]
 theme_override_constants/separation = 12
+script = ExtResource("logic")
 
-[node name="Quality" type="OptionButton" parent="."]
+[node name="Quality" type="OptionButton" parent="." unique_id=39161764]
 custom_minimum_size = Vector2(194, 56)
-item_count = 3
+layout_mode = 2
 selected = 1
+item_count = 3
 popup/item_0/text = "Performance"
 popup/item_0/id = 0
 popup/item_1/text = "Balanced"
@@ -17,7 +18,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Ultra"
 popup/item_2/id = 2
 
-[node name="Fullscreen" type="Button" parent="."]
+[node name="Fullscreen" type="Button" parent="." unique_id=44734958]
 custom_minimum_size = Vector2(226, 56)
+layout_mode = 2
 text = "Fullscreen / F11"
-

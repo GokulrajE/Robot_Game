@@ -2,7 +2,7 @@ extends SceneTree
 func _initialize() -> void:
 	call_deferred("run_tests")
 func run_tests() -> void:
-	var game = load("res://scenes/adventure.tscn").instantiate()
+	var game = load("res://games/adventure/scenes/adventure.tscn").instantiate()
 	root.add_child(game)
 	game.set_process(false)
 	for sound in game.find_children("*Sound", "AudioStreamPlayer", true, false): sound.stream = null

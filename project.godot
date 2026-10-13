@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="sitar"
-run/main_scene="res://scenes/launcher.tscn"
+run/main_scene="res://scenes/ui/launcher.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/images/icon.svg"
 
 [autoload]
 
-Global="*res://Global.gd"
+Global="*res://games/hand_tracking/scripts/Global.gd"
 
 [display]
 

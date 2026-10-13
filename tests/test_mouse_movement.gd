@@ -13,7 +13,7 @@ func click_at(position: Vector2, button := MOUSE_BUTTON_LEFT, double := false) -
 	event.pressed = false
 	root.push_input(event, true)
 func run_tests() -> void:
-	game = load("res://scenes/adventure.tscn").instantiate()
+	game = load("res://games/adventure/scenes/adventure.tscn").instantiate()
 	root.add_child(game)
 	game.set_process(false)
 	for sound in game.find_children("*Sound", "AudioStreamPlayer", true, false): sound.stream = null

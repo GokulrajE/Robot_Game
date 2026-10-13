@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c3nm65pc0elpk"]
+
+[sub_resource type="StandardMaterial3D" id="mat1"]
+albedo_color = Color(0.95, 0.19, 0.29, 1)
+metallic = 0.12
+roughness = 0.36
+
+[sub_resource type="SphereMesh" id="mesh1"]
+material = SubResource("mat1")
+
+[sub_resource type="StandardMaterial3D" id="mat2"]
+albedo_color = Color(0.32, 0.16, 0.08, 1)
+metallic = 0.12
+roughness = 0.36
+
+[sub_resource type="CylinderMesh" id="mesh2"]
+material = SubResource("mat2")
+
+[sub_resource type="StandardMaterial3D" id="mat3"]
+albedo_color = Color(0.25, 0.85, 0.44, 1)
+metallic = 0.12
+roughness = 0.36
+
+[sub_resource type="SphereMesh" id="mesh3"]
+material = SubResource("mat3")
+
+[node name="Apple" type="Node3D" unique_id=41317561]
+
+[node name="Fruit" type="MeshInstance3D" parent="." unique_id=1772805091]
+transform = Transform3D(1.25, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.55, 0)
+mesh = SubResource("mesh1")
+
+[node name="Stem" type="MeshInstance3D" parent="." unique_id=694621045]
+transform = Transform3D(0.09, 0, 0, 0, 0.32, 0, 0, 0, 0.09, 0, 1.12, 0)
+mesh = SubResource("mesh2")
+
+[node name="Leaf" type="MeshInstance3D" parent="." unique_id=414057231]
+transform = Transform3D(0.55, 0, 0, 0, 0.14, 0, 0, 0, 0.26, 0.25, 1.18, 0)
+mesh = SubResource("mesh3")

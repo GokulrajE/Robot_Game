@@ -5,7 +5,7 @@ func settle() -> void:
 	await process_frame
 	await process_frame
 func run_tests() -> void:
-	change_scene_to_file("res://scenes/launcher.tscn")
+	change_scene_to_file("res://scenes/ui/launcher.tscn")
 	await settle()
 	current_scene.get_node("%Credits").pressed.emit()
 	assert(current_scene.get_node("%CreditsPanel").visible)
@@ -28,5 +28,11 @@ func run_tests() -> void:
 	current_scene.get_node("%Home").pressed.emit()
 	await settle()
 	assert(current_scene.get_node("%Mute").button_pressed)
+	current_scene.get_node("%Ocean").pressed.emit()
+	await settle()
+	assert(current_scene.name == "OceanRescue")
+	current_scene.get_node("%Home").pressed.emit()
+	await settle()
+	assert(current_scene.has_node("%Ocean"))
 	print("PASS: launcher, credits, both section routes, game selectors and shared mute")
 	quit()

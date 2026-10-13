@@ -3,7 +3,7 @@ var game
 func _initialize() -> void:
 	call_deferred("run_tests")
 func run_tests() -> void:
-	game = load("res://scenes/adventure.tscn").instantiate()
+	game = load("res://games/adventure/scenes/adventure.tscn").instantiate()
 	root.add_child(game)
 	game.set_process(false)
 	# Headless tests run many actions in one frame; keep audio resources checked, but skip mixing.
@@ -45,6 +45,8 @@ func run_tests() -> void:
 	game.hearts = 1
 	game.invincible = 0
 	game.check_collisions()
+	assert(game.defeat_delay > 0)
+	game._process(1.01)
 	assert(game.state == "finished")
 	game.get_node("%Resume").pressed.emit()
 	assert(game.state == "playing" and game.score == 0 and game.hearts == 3)

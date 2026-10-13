@@ -1,0 +1,62 @@
+[gd_scene format=3]
+[sub_resource type="StandardMaterial3D" id="body"]
+albedo_color = Color(0.06,0.62,0.64,1)
+emission_enabled = true
+emission = Color(0.06,0.62,0.64,1)
+emission_energy_multiplier = 0.35
+roughness = 0.38
+[sub_resource type="StandardMaterial3D" id="tail"]
+albedo_color = Color(0.94,0.73,0.21,1)
+roughness = 0.45
+[sub_resource type="StandardMaterial3D" id="eye"]
+albedo_color = Color(0.015,0.04,0.05,1)
+[sub_resource type="SphereMesh" id="round"]
+radial_segments = 24
+rings = 12
+[sub_resource type="PrismMesh" id="fin"]
+size = Vector3(0.09,0.34,0.4)
+[node name="Fish" type="Node3D"]
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("round")
+material_override = SubResource("body")
+scale = Vector3(0.38,0.46,0.88)
+cast_shadow = 0
+[node name="Tail" type="Node3D" parent="."]
+position = Vector3(0,0,-0.43)
+[node name="Fan" type="MeshInstance3D" parent="Tail"]
+mesh = SubResource("round")
+material_override = SubResource("tail")
+position = Vector3(0,0,-0.12)
+scale = Vector3(0.08,0.48,0.32)
+cast_shadow = 0
+[node name="Dorsal" type="MeshInstance3D" parent="."]
+mesh = SubResource("fin")
+material_override = SubResource("tail")
+position = Vector3(0,0.22,-0.06)
+cast_shadow = 0
+[node name="Eye-1" type="MeshInstance3D" parent="."]
+mesh = SubResource("round")
+material_override = SubResource("eye")
+position = Vector3(-0.153,0.07,0.24)
+scale = Vector3(0.045,0.062,0.062)
+cast_shadow = 0
+[node name="Fin-1" type="MeshInstance3D" parent="."]
+mesh = SubResource("round")
+material_override = SubResource("tail")
+position = Vector3(-0.23,-0.03,0.04)
+rotation_degrees = Vector3(0,-25,-25)
+scale = Vector3(0.22,0.035,0.3)
+cast_shadow = 0
+[node name="Eye1" type="MeshInstance3D" parent="."]
+mesh = SubResource("round")
+material_override = SubResource("eye")
+position = Vector3(0.153,0.07,0.24)
+scale = Vector3(0.045,0.062,0.062)
+cast_shadow = 0
+[node name="Fin1" type="MeshInstance3D" parent="."]
+mesh = SubResource("round")
+material_override = SubResource("tail")
+position = Vector3(0.23,-0.03,0.04)
+rotation_degrees = Vector3(0,25,25)
+scale = Vector3(0.22,0.035,0.3)
+cast_shadow = 0

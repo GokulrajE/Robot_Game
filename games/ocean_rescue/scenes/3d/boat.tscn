@@ -1,0 +1,401 @@
+[gd_scene format=3]
+[ext_resource type="Shader" path="res://assets/shaders/ocean_wake.gdshader" id="wake_shader"]
+[ext_resource type="PackedScene" path="res://games/ocean_rescue/scenes/3d/rescue_boat_detailed.tscn" id="fishing_boat"]
+[ext_resource type="PackedScene" path="res://games/ocean_rescue/scenes/3d/bottle_detailed.tscn" id="cargo"]
+
+[sub_resource type="StandardMaterial3D" id="r1"]
+albedo_color = Color(1,0.72,0.12,1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="r2"]
+albedo_color = Color(0.96,0.28,0.2,1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="r3"]
+albedo_color = Color(1,0.95,0.79,1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="r4"]
+albedo_color = Color(0.055,0.29,0.38,1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="r5"]
+albedo_color = Color(0.52,0.3,0.13,1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="r6"]
+albedo_color = Color(0.85,0.98,1,1)
+roughness = 0.65
+
+[sub_resource type="SphereMesh" id="r7"]
+material = SubResource("r2")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="BoxMesh" id="r8"]
+material = SubResource("r1")
+
+
+[sub_resource type="PrismMesh" id="r9"]
+material = SubResource("r1")
+
+
+[sub_resource type="BoxMesh" id="r10"]
+material = SubResource("r3")
+
+
+[sub_resource type="BoxMesh" id="r11"]
+material = SubResource("r4")
+
+
+[sub_resource type="BoxMesh" id="r12"]
+material = SubResource("r4")
+
+
+[sub_resource type="BoxMesh" id="r13"]
+material = SubResource("r4")
+
+
+[sub_resource type="BoxMesh" id="r14"]
+material = SubResource("r2")
+
+
+[sub_resource type="CylinderMesh" id="r15"]
+material = SubResource("r3")
+
+
+[sub_resource type="BoxMesh" id="r16"]
+material = SubResource("r1")
+
+
+[sub_resource type="BoxMesh" id="r17"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r18"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r19"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r20"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r21"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r22"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r23"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r24"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r25"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r26"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r27"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r28"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r29"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r30"]
+material = SubResource("r5")
+
+
+[sub_resource type="BoxMesh" id="r31"]
+material = SubResource("r5")
+
+
+[sub_resource type="TorusMesh" id="r32"]
+material = SubResource("r3")
+inner_radius = 0.55
+outer_radius = 0.61
+
+[sub_resource type="BoxMesh" id="r33"]
+material = SubResource("r6")
+
+
+[sub_resource type="BoxMesh" id="r34"]
+material = SubResource("r6")
+
+
+[sub_resource type="BoxMesh" id="r35"]
+material = SubResource("r6")
+
+
+[sub_resource type="BoxMesh" id="r36"]
+material = SubResource("r6")
+
+
+[sub_resource type="BoxMesh" id="r37"]
+material = SubResource("r6")
+
+
+[sub_resource type="TorusMesh" id="r38"]
+material = SubResource("r6")
+inner_radius = 0.75
+outer_radius = 0.8
+
+[sub_resource type="TorusMesh" id="r39"]
+material = SubResource("r6")
+inner_radius = 0.75
+outer_radius = 0.8
+
+[sub_resource type="TorusMesh" id="r40"]
+material = SubResource("r6")
+inner_radius = 0.75
+outer_radius = 0.8
+
+[sub_resource type="Animation" id="r41"]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Model/Scoop:rotation:x")
+tracks/0/keys = {"times": PackedFloat32Array(0,0.25,0.8), "transitions": PackedFloat32Array(1,1,1), "update": 0, "values": [0.0,-0.7,0.0]}
+
+
+[sub_resource type="AnimationLibrary" id="r42"]
+_data = {&"scoop": SubResource("r41")}
+
+[sub_resource type="ShaderMaterial" id="wake_mat"]
+resource_local_to_scene = true
+shader = ExtResource("wake_shader")
+[sub_resource type="PlaneMesh" id="wake_plane"]
+size = Vector2(3,4)
+material = SubResource("wake_mat")
+
+[node name="Boat" type="Node3D"]
+
+
+[node name="Model" type="Node3D" parent="."]
+
+
+
+
+
+
+
+
+[node name="BasketBase" type="MeshInstance3D" parent="Model"]
+position = Vector3(0, 0.58, 0.85)
+scale = Vector3(1, 0.12, 0.75)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r17")
+
+[node name="BasketRail-0.50.7" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.5, 0.7, 0.85)
+scale = Vector3(0.06, 0.07, 0.8)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r18")
+
+[node name="BasketRail-0.50.85" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.5, 0.85, 0.85)
+scale = Vector3(0.06, 0.07, 0.8)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r19")
+
+[node name="BasketRail-0.51.0" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.5, 1.0, 0.85)
+scale = Vector3(0.06, 0.07, 0.8)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r20")
+
+[node name="BasketRail0.50.7" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.5, 0.7, 0.85)
+scale = Vector3(0.06, 0.07, 0.8)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r21")
+
+[node name="BasketRail0.50.85" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.5, 0.85, 0.85)
+scale = Vector3(0.06, 0.07, 0.8)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r22")
+
+[node name="BasketRail0.51.0" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.5, 1.0, 0.85)
+scale = Vector3(0.06, 0.07, 0.8)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r23")
+
+[node name="BasketCross0.450.7" type="MeshInstance3D" parent="Model"]
+position = Vector3(0, 0.7, 0.45)
+scale = Vector3(1, 0.07, 0.06)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r24")
+
+[node name="BasketCross0.450.85" type="MeshInstance3D" parent="Model"]
+position = Vector3(0, 0.85, 0.45)
+scale = Vector3(1, 0.07, 0.06)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r25")
+
+[node name="BasketCross0.451.0" type="MeshInstance3D" parent="Model"]
+position = Vector3(0, 1.0, 0.45)
+scale = Vector3(1, 0.07, 0.06)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r26")
+
+[node name="BasketCross1.250.7" type="MeshInstance3D" parent="Model"]
+position = Vector3(0, 0.7, 1.25)
+scale = Vector3(1, 0.07, 0.06)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r27")
+
+[node name="BasketCross1.250.85" type="MeshInstance3D" parent="Model"]
+position = Vector3(0, 0.85, 1.25)
+scale = Vector3(1, 0.07, 0.06)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r28")
+
+[node name="BasketCross1.251.0" type="MeshInstance3D" parent="Model"]
+position = Vector3(0, 1.0, 1.25)
+scale = Vector3(1, 0.07, 0.06)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r29")
+
+[node name="Basket" type="Marker3D" parent="."]
+position = Vector3(0,0.95,0.85)
+
+[node name="Scoop" type="Node3D" parent="Model"]
+position = Vector3(0,0.4,1.5)
+
+[node name="Arm-0.6" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(-0.6, -0.15, 0.4)
+scale = Vector3(0.07, 0.08, 1)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r30")
+
+[node name="Arm0.6" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(0.6, -0.15, 0.4)
+scale = Vector3(0.07, 0.08, 1)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r31")
+
+[node name="Rim" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(0, -0.25, 0.85)
+scale = Vector3(0.75, 1, 1)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r32")
+
+[node name="Net-0.4" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(-0.4, -0.3, 0.85)
+scale = Vector3(0.022, 0.022, 0.95)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r33")
+
+[node name="Net-0.2" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(-0.2, -0.3, 0.85)
+scale = Vector3(0.022, 0.022, 0.95)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r34")
+
+[node name="Net0" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(0, -0.3, 0.85)
+scale = Vector3(0.022, 0.022, 0.95)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r35")
+
+[node name="Net0.2" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(0.2, -0.3, 0.85)
+scale = Vector3(0.022, 0.022, 0.95)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r36")
+
+[node name="Net0.4" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(0.4, -0.3, 0.85)
+scale = Vector3(0.022, 0.022, 0.95)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("r37")
+
+[node name="Wake" type="Node3D" parent="."]
+position = Vector3(0,0.03,-1.45)
+visible = false
+
+
+
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 2
+libraries = {&"": SubResource("r42")}
+
+[node name="Cargo0" parent="Model" instance=ExtResource("cargo")]
+visible = false
+position = Vector3(-0.3,0.85,0.85)
+scale = Vector3(0.35,0.35,0.35)
+
+[node name="Cargo1" parent="Model" instance=ExtResource("cargo")]
+visible = false
+position = Vector3(0.0,0.85,0.85)
+scale = Vector3(0.35,0.35,0.35)
+
+[node name="Cargo2" parent="Model" instance=ExtResource("cargo")]
+visible = false
+position = Vector3(0.3,0.85,0.85)
+scale = Vector3(0.35,0.35,0.35)
+
+[node name="FishingBoat" parent="Model" instance=ExtResource("fishing_boat")]
+position = Vector3(0,0,0)
+scale = Vector3(1,1,1)
+rotation_degrees = Vector3(0,0,0)
+
+[node name="Trail" type="MeshInstance3D" parent="Wake"]
+position = Vector3(0,0.05,-1.5)
+mesh = SubResource("wake_plane")
+cast_shadow = 0
+
+[node name="CrossWeave0" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(0,-0.305,0.46)
+scale = Vector3(0.8,0.016,0.016)
+mesh = SubResource("r33")
+
+[node name="CrossWeave1" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(0,-0.305,0.5900000000000001)
+scale = Vector3(0.8,0.016,0.016)
+mesh = SubResource("r33")
+
+[node name="CrossWeave2" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(0,-0.305,0.72)
+scale = Vector3(0.8,0.016,0.016)
+mesh = SubResource("r33")
+
+[node name="CrossWeave3" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(0,-0.305,0.8500000000000001)
+scale = Vector3(0.8,0.016,0.016)
+mesh = SubResource("r33")
+
+[node name="CrossWeave4" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(0,-0.305,0.98)
+scale = Vector3(0.8,0.016,0.016)
+mesh = SubResource("r33")
+
+[node name="CrossWeave5" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(0,-0.305,1.11)
+scale = Vector3(0.8,0.016,0.016)
+mesh = SubResource("r33")
+
+[node name="CrossWeave6" type="MeshInstance3D" parent="Model/Scoop"]
+position = Vector3(0,-0.305,1.24)
+scale = Vector3(0.8,0.016,0.016)
+mesh = SubResource("r33")

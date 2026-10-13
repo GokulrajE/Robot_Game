@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://c7xjm4fn8c2kp"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://bvh2m1htqx7sc" path="res://refferance.gd" id="1_ref01"]
+[ext_resource type="Script" path="res://games/hand_tracking/scripts/refferance.gd" id="1_ref01"]
 
 [node name="SitarGame" type="Node2D" unique_id=29406604]
 script = ExtResource("1_ref01")

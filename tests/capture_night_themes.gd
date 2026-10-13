@@ -11,7 +11,7 @@ func capture() -> void:
 	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	root.add_child(viewport)
 	for section in ["adventure", "cognitive"]:
-		var scene_path := "res://scenes/adventure.tscn" if section == "adventure" else "res://cognitive_hub.tscn"
+		var scene_path := "res://games/adventure/scenes/adventure.tscn" if section == "adventure" else "res://games/cognitive/scenes/cognitive_hub.tscn"
 		var game = load(scene_path).instantiate()
 		viewport.add_child(game)
 		game.set_process(false)
